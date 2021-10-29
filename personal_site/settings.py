@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'main',
     'contact',
-    #'blog',
+    'blog',
     'portfolio',
     'ckeditor',
 ]

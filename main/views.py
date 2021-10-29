@@ -1,5 +1,6 @@
-from .models import Blog, Testimonial, Certificate
+from .models import Testimonial, Certificate
 from portfolio.models import Portfolio
+from blog.models import Blog
 from django.views import generic
 
 
@@ -21,23 +22,3 @@ class IndexView(generic.TemplateView):
         context['portfolio'] = portfolio
 
         return context
-
-
-
-
-
-
-
-
-class BlogView(generic.ListView):
-    model = Blog
-    template_name = 'main/personal_site.html'
-    paginate_by = 10
-
-    def get_queryset(self):
-        return super(BlogView, self).get_queryset().filter(is_active=True)
-
-
-class BlogDetailView(generic.DetailView):
-    model = Blog
-    template_name = 'main/personal_site-detail.html'

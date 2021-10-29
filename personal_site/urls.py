@@ -22,7 +22,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('main.urls', namespace='main')),
     path('contact/', include('contact.urls', namespace='contact')),
-    path('portfolio/', include('portfolio.urls', namespace='portfolio'))
+    path('portfolio/', include('portfolio.urls', namespace='portfolio')),
+     path('blog/', include('blog.urls', namespace='blog'))
 ]
 
 if settings.DEBUG:

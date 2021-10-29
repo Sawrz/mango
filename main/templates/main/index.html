@@ -237,7 +237,7 @@ Start Content
                         <h4 class="smText regular">Recent posts</h4>
                     </div>
                     <div class="col-auto">
-                        <a href="{% url 'main:posts' %}" class="simpleLink">View all</a>
+                        <a href="{% url 'blog:posts' %}" class="simpleLink">View all</a>
                     </div>
                 </div>
                 <div class="row g-3">
@@ -246,7 +246,7 @@ Start Content
                             <div class="col-lg-6">
                                 <div class="cardStyle1">
                                     <h4 class="mdTitle cs1Title"><a
-                                            href="{% url 'main:post' slug=p.slug %}">{{ p.name }}</a></h4>
+                                            href="{% url 'blog:post' slug=p.slug %}">{{ p.name }}</a></h4>
                                     <ul class="cardOptionCol">
                                         <li>{{ p.timestamp.date }}</li>
                                         <li>{{ p.author }}</li>
