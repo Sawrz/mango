@@ -1,16 +1,11 @@
 from django.contrib import admin
-from .models import UserProfile, ContactProfile, Testimonial, Media, Portfolio, Blog, Certificate, Skill
+from .models import UserProfile, Testimonial, Media, Portfolio, Blog, Certificate, Skill
 
 
 # Register your models here.
 @admin.register(UserProfile)
 class UserProfileAdmin(admin.ModelAdmin):
     list_display = ('id', 'user')
-
-
-@admin.register(ContactProfile)
-class ContactProfileAdmin(admin.ModelAdmin):
-    list_display = ('id', 'timestamp', 'name')
 
 
 @admin.register(Testimonial)
