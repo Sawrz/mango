@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import UserProfile, Testimonial, Media, Portfolio, Blog, Certificate, Skill
+from .models import UserProfile, Testimonial, Media, Blog, Certificate, Skill
 
 
 # Register your models here.
@@ -16,12 +16,6 @@ class TestimonialAdmin(admin.ModelAdmin):
 @admin.register(Media)
 class MediaAdmin(admin.ModelAdmin):
     list_display = ('id', 'name')
-
-
-@admin.register(Portfolio)
-class PortfolioAdmin(admin.ModelAdmin):
-    list_display = ('id', 'name', 'is_active')
-    readonly_fields = ('slug',)
 
 
 @admin.register(Blog)

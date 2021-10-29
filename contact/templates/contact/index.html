@@ -26,10 +26,11 @@ Start script blocks
 <!-- ================================
 End script blocks
 ================================= -->
+
+<!-- ================================
+Start Content
+================================= -->
 {% block content %}
-    <!-- ================================
-    Start Content
-    ================================= -->
     <section>
         <div class="innerPageBannerCol">
             <div class="container">
@@ -50,21 +51,20 @@ End script blocks
                 <form id="contactForm" method="POST" action="/contact/">
                     {% csrf_token %}
                     <label for="name">Name</label>
-                    {{form.name}}
+                    {{ form.name }}
 
                     <label for="email">Email</label>
-                    {{form.email}}
+                    {{ form.email }}
 
                     <label for="message">Message</label>
-                    {{form.message}}
+                    {{ form.message }}
 
                     <input class='btn btnPrimary' type="submit" value="Submit">
                 </form>
             </div>
         </div>
     </section>
-
-    <!-- ================================
-    End Content
-    ================================= -->
 {% endblock %}
+<!-- ================================
+End Content
+================================= -->

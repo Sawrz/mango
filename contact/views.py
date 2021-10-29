@@ -5,7 +5,7 @@ from .forms import ContactForm
 
 # Create your views here.
 class ContactView(generic.FormView):
-    template_name = 'contact/contact.html'
+    template_name = 'contact/index.html'
     form_class = ContactForm
     success_url = '/'
 

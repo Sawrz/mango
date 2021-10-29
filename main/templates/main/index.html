@@ -163,7 +163,7 @@ Start Content
                             <h4 class="smText regular">Featured Work</h4>
                         </div>
                         <div class="col-auto">
-                            <a href="{% url 'main:portfolios' %}" class="simpleLink">View all</a>
+                            <a href="{% url 'portfolio:projects' %}" class="simpleLink">View all</a>
                         </div>
                     </div>
                     {% for p in portfolio %}
@@ -172,14 +172,14 @@ Start Content
                                 <div class="row g-4 align-items-center">
                                     <div class="col-md-auto">
                                         <div class="portfolioImgCol">
-                                            <a href="{% url 'main:project' slug=p.slug %}"><img src="{{ p.image.url }}"
+                                            <a href="{% url 'portfolio:project' slug=p.slug %}"><img src="{{ p.image.url }}"
                                                                                                 alt="..."></a>
                                         </div>
                                     </div>
                                     <div class="col-md">
                                         <div class="portfolioContentCol">
                                             <h4 class="lgTitle"><a
-                                                    href="{% url 'main:project' slug=p.slug %}">{{ p.name }}</a></h4>
+                                                    href="{% url 'portfolio:project' slug=p.slug %}">{{ p.name }}</a></h4>
                                             <ul class="portfolioOption">
                                                 <li><span class="dateLbl">{{ p.date.year }}</span></li>
                                             </ul>
