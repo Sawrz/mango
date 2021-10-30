@@ -8,7 +8,7 @@
         <title>{% block title %}{% endblock %}</title>
         <meta name="author" content="Did Coding Limited & James Granger Design">
         <link rel="canonical" href="{{ request.path }}"/>
-        <link rel="home" href="{% url 'main:home' %}"/>
+        <link rel="home" href="{{ ROOT_URL }}"/>
         <meta name="description" content="{% block description %}{% endblock %}">
         <meta name="keywords" content="{% block keywords %}{% endblock %}">
 

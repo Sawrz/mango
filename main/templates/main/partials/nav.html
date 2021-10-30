@@ -8,7 +8,8 @@ Start Navigation Bar
         <div class="container-fluid">
             <div class="row align-items-center">
                 <div class="col-auto">
-                    <div class="logoCol"><a href="{% url 'main:home' %}"><img src="{% static 'images/logo.png' %}" alt="..."></a></div>
+                    <div class="logoCol"><a href="{{ ROOT_URL }}"><img src="{% static 'images/logo.png' %}"
+                                                                       alt="..."></a></div>
                 </div>
                 <div class="col">
                     <div class="d-md-none">
@@ -19,7 +20,7 @@ Start Navigation Bar
                     <div class="navCollapseCol">
                         <div class="navCol">
                             <ul>
-                                <li><a href="{% url 'main:home' %}">Home</a></li>
+                                <li><a href="{{ ROOT_URL }}">Home</a></li>
                                 <li><a href="{% url 'portfolio:projects' %}">Portfolio</a></li>
                                 <li><a href="{% url 'blog:posts' %}">Blog</a></li>
                                 <li><a href="{% url 'contact:contact_page' %}">Contact</a></li>

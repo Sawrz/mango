@@ -37,18 +37,18 @@ Start Content
                 <div class="row g-4 g-md-3  align-items-center">
                     <div class="col-md-auto order-md-last">
                         <div class="bannerUserImg">
-                            <img src="{{ me.userprofile.avatar.url }}" alt="...">
+                            <img src="{{ me.profile.avatar.url }}" alt="...">
                         </div>
                     </div>
                     <div class="col-md">
                         <div class="bannerContent">
                             <h1 class="xlTitle pb-3">Hi, I’m {{ me.first_name|title }}, <br>
-                                a {{ me.userprofile.title }}</h1>
-                            <p>{{ me.userprofile.bio }}</p>
+                                a {{ me.profile.profile.job_title }}</h1>
+                            <p>{{ me.profile.bio }}</p>
                             <div class="bannerBtnCol">
                                 <div class="row">
                                     <div class="col-auto">
-                                        <a download href="{{ me.userprofile.cv.url }}" class="btn btnPrimary">Download
+                                        <a download href="{{ me.profile.profile.cv.url }}" class="btn btnPrimary">Download
                                             CV</a>
                                     </div>
                                     <div class="col-auto">
@@ -70,8 +70,8 @@ Start Content
                     <div class="col-md-auto">
                         <div class="keySkillCol">
                             <h4 class="smTitle pb-3">Key Skills</h4>
-                            {% for sk in me.userprofile.skills.all %}
-                                {% if sk.is_key_skill %}
+                            {% for sk in me.profile.profile.soft_skills.all %}
+                                {% if sk.is_active %}
                                     <div class="keySkillCard">
                                         <div class="ksIconCol">
                                             <img src="{{ sk.image.url }}" alt="...">
@@ -86,8 +86,8 @@ Start Content
                         <h4 class="smTitle pb-3">Coding Skills</h4>
                         <div class="progressCol">
                             <div class="progressCard">
-                                {% for sk in me.userprofile.skills.all %}
-                                    {% if not sk.is_key_skill %}
+                                {% for sk in me.profile.profile.technical_skills.all %}
+                                    {% if sk.is_active %}
                                         <div class="progressCol">
                                             <span class="progressLbl">{{ sk.name }}</span>
                                             <div class="row g-2 align-items-center">
@@ -133,11 +133,14 @@ Start Content
                                     <div class="swiper-slide">
                                         <div class="cardStyle1">
                                             <h4 class="mdTitle cs1Title">
-                                                <a href="javascript:void(0)">{{ c.title }}</a>
+                                                {% if c.url %}<a href="{{ c.url }}">{% endif %}
+                                                    {{ c.title }}
+                                                {% if c.url %}</a>{% endif %}
+
                                             </h4>
                                             <ul class="cardOptionCol">
-                                                <li>{{ c.date.date }}</li>
-                                                <li>{{ c.title }}</li>
+                                                <li>{{ c.date_received.date }}</li>
+                                                <li>{{ c.institution }}</li>
                                             </ul>
                                             <p>{{ c.description }}</p>
                                         </div>
@@ -172,14 +175,16 @@ Start Content
                                 <div class="row g-4 align-items-center">
                                     <div class="col-md-auto">
                                         <div class="portfolioImgCol">
-                                            <a href="{% url 'portfolio:project' slug=p.slug %}"><img src="{{ p.image.url }}"
-                                                                                                alt="..."></a>
+                                            <a href="{% url 'portfolio:project' slug=p.slug %}"><img
+                                                    src="{{ p.image.url }}"
+                                                    alt="..."></a>
                                         </div>
                                     </div>
                                     <div class="col-md">
                                         <div class="portfolioContentCol">
                                             <h4 class="lgTitle"><a
-                                                    href="{% url 'portfolio:project' slug=p.slug %}">{{ p.name }}</a></h4>
+                                                    href="{% url 'portfolio:project' slug=p.slug %}">{{ p.name }}</a>
+                                            </h4>
                                             <ul class="portfolioOption">
                                                 <li><span class="dateLbl">{{ p.date.year }}</span></li>
                                             </ul>
@@ -208,7 +213,12 @@ Start Content
                                                     </div>
                                                     <div class="col-sm">
                                                         <div class="tContentCol">
-                                                            <h4 class="xsTitle bold">{{ t.name }} - {{ t.role }}</h4>
+                                                            <h4 class="xsTitle bold">
+                                                                {% if t.profile_url %}
+                                                                    <a href="{{ t.profile_url }}"> {% endif %}
+                                                                {{ t.first_name }} {{ t.last_name }} - {{ t.role }}
+                                                                {% if t.profile_url %} </a> {% endif %}
+                                                            </h4>
                                                             <p>{{ t.quote }}</p>
                                                         </div>
                                                     </div>

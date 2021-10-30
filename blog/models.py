@@ -1,7 +1,7 @@
 from django.db import models
 from django.template.defaultfilters import slugify
 from ckeditor.fields import RichTextField
-from main.models import UserProfile
+from main.models import Profile
 
 
 # Create your models here.
@@ -47,7 +47,7 @@ class Post(models.Model):
     publish_date = models.DateTimeField(blank=True, null=True)
     published = models.BooleanField(default=False)
 
-    author = models.ForeignKey(UserProfile, on_delete=models.PROTECT)
+    author = models.ForeignKey(Profile, on_delete=models.PROTECT)
     tags = models.ManyToManyField(Tag, blank=True)
     category = models.ForeignKey(Category, blank=True, null=True, on_delete=models.PROTECT)
 
