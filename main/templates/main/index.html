@@ -242,16 +242,16 @@ Start Content
                 </div>
                 <div class="row g-3">
                     {% for p in posts %}
-                        {% if p.is_active %}
+                        {% if p.published %}
                             <div class="col-lg-6">
                                 <div class="cardStyle1">
                                     <h4 class="mdTitle cs1Title"><a
-                                            href="{% url 'blog:post' slug=p.slug %}">{{ p.name }}</a></h4>
+                                            href="{% url 'blog:post' slug=p.slug %}">{{ p.title }}</a></h4>
                                     <ul class="cardOptionCol">
-                                        <li>{{ p.timestamp.date }}</li>
+                                        <li>{{ p.published_date.date }}</li>
                                         <li>{{ p.author }}</li>
                                     </ul>
-                                    <p>{{ p.description }}</p>
+                                    <p>{{ p.body }}</p>
                                 </div>
                             </div>
                         {% endif %}
