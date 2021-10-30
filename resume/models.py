@@ -1,5 +1,6 @@
 from django.db import models
 from main.models import Profile as MainProfile
+from django.core.validators import MinValueValidator, MaxValueValidator
 
 
 # Create your models here.
@@ -10,7 +11,8 @@ class TechnicalSkill(models.Model):
         ordering = ['-score']
 
     name = models.CharField(max_length=255, null=False)
-    score = models.IntegerField(default=80, null=False)
+    score = models.PositiveIntegerField(default=80, validators=[MinValueValidator(0), MaxValueValidator(100)],
+                                        null=False)
     is_active = models.BooleanField(default=True)
 
     def __str__(self):
@@ -61,7 +63,7 @@ class Testimonial(models.Model):
 
     quote = models.CharField(max_length=512, blank=True, null=False)
 
-    date_added = models.DateTimeField(auto_now=True)
+    date_added = models.DateField(auto_now=True)
     is_active = models.BooleanField(default=True)
 
     def __str__(self):
@@ -76,8 +78,8 @@ class Certificate(models.Model):
     title = models.CharField(max_length=255, null=False)
     institution = models.CharField(max_length=255, null=False)
 
-    date_received = models.DateTimeField(blank=False, null=False)
-    valid_until = models.DateTimeField(blank=True, null=True)
+    date_received = models.DateField(blank=False, null=False)
+    valid_until = models.DateField(blank=True, null=True)
 
     description = models.CharField(max_length=512, blank=True, null=True)
     url = models.URLField(max_length=255, blank=True, null=True)
