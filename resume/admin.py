@@ -34,7 +34,9 @@ class SoftSkillAdmin(admin.ModelAdmin):
 
 @admin.register(Profile)
 class UserProfileAdmin(admin.ModelAdmin):
-    list_display = ('id', 'main_profile')
+    list_display = ('id',
+                    'main_profile',
+                    'job_title')
 
 
 @admin.register(Testimonial)
