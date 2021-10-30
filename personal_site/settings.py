@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'main',
+    'resume',
     'contact',
     'blog',
     'portfolio',
@@ -55,6 +56,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+ROOT_URL = '/'
 ROOT_URLCONF = 'personal_site.urls'
 
 TEMPLATES = [
@@ -69,6 +71,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'personal_site.context_processors.project_context',
+                'personal_site.context_processors.root_url',
             ],
         },
     },
