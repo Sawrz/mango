@@ -23,7 +23,8 @@ urlpatterns = [
     path('', include('resume.urls', namespace='resume')),
     path('contact/', include('contact.urls', namespace='contact')),
     path('portfolio/', include('portfolio.urls', namespace='portfolio')),
-    path('blog/', include('blog.urls', namespace='blog'))
+    path('blog/', include('blog.urls', namespace='blog')),
+    path('martor/', include('martor.urls')),
 ]
 
 if settings.DEBUG:

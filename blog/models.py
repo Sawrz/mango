@@ -37,7 +37,7 @@ class Post(models.Model):
     title = models.CharField(max_length=255, unique=True)
     subtitle = models.CharField(max_length=255, blank=True)
     slug = models.SlugField(max_length=255, unique=True, null=True)
-    body = RichTextField(blank=True, null=True)
+    body = models.TextField(blank=True, null=True)
     meta_description = models.CharField(max_length=150, blank=True)
     thumbnail = models.ImageField(blank=True, null=True, upload_to='blog/thumbnails')
     banner = models.ImageField(blank=True, null=True, upload_to='blog/banners')
