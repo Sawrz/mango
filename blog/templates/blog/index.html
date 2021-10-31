@@ -51,7 +51,7 @@ Start Content
                 <div class="portfolioContentMain">
                     <div class="row g-3 g-md-4 g-lg-5 portfolioRow">
                         {% for p in object_list %}
-                            {% if p.published %}
+                            {% if p.published and p.is_due %}
                                 <div class="col-md-6 pColMain">
                                     <div class="pCol">
                                         <a href="{% url 'blog:post' slug=p.slug %}">

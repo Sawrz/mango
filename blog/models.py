@@ -1,7 +1,8 @@
 from django.db import models
 from django.template.defaultfilters import slugify
-from ckeditor.fields import RichTextField
 from main.models import Profile
+from datetime import datetime
+import pytz
 
 
 # Create your models here.
@@ -56,3 +57,8 @@ class Post(models.Model):
 
     def get_absolute_url(self):
         return f'/blog/{self.slug}'
+
+    @property
+    def is_due(self):
+        return datetime.now(tz=pytz.UTC) >= self.publish_date.replace(tzinfo=pytz.UTC)
+
