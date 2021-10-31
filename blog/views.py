@@ -8,8 +8,11 @@ class PostListView(generic.ListView):
     template_name = 'blog/index.html'
     paginate_by = 10
 
-    def get_queryset(self):
-        return super(PostListView, self).get_queryset().filter(published=True)
+    def get_context_data(self, **kwargs):
+        context = super(PostListView, self).get_context_data(**kwargs)
+        context['posts'] = Post.released_objects.all()
+
+        return context
 
 
 class PostDetailView(generic.DetailView):

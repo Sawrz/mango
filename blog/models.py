@@ -6,7 +6,7 @@ import pytz
 
 
 # Create your models here.
-class Tag (models.Model):
+class Tag(models.Model):
     class Meta:
         verbose_name = 'Tag'
         verbose_name_plural = 'Tags'
@@ -27,6 +27,14 @@ class Category(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class PostReleaseManager(models.Manager):
+    def get_queryset(self):
+        posts = super(PostReleaseManager, self).get_queryset().filter(published=True)
+        post_ids = [p.id for p in posts if datetime.now(tz=pytz.UTC) >= p.publish_date.replace(tzinfo=pytz.UTC)]
+
+        return posts.filter(id__in=post_ids)
 
 
 class Post(models.Model):
@@ -52,13 +60,11 @@ class Post(models.Model):
     tags = models.ManyToManyField(Tag, blank=True)
     category = models.ForeignKey(Category, blank=True, null=True, on_delete=models.PROTECT)
 
+    objects = models.Manager()
+    released_objects = PostReleaseManager()
+
     def __str__(self):
         return f'{self.title}-{self.subtitle}'
 
     def get_absolute_url(self):
         return f'/blog/{self.slug}'
-
-    @property
-    def is_due(self):
-        return datetime.now(tz=pytz.UTC) >= self.publish_date.replace(tzinfo=pytz.UTC)
-

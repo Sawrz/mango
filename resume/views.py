@@ -13,12 +13,12 @@ class IndexView(generic.TemplateView):
 
         testimonials = Testimonial.objects.filter(is_active=True)
         certificates = Certificate.objects.filter(is_active=True)
-        blogs = Post.objects.filter(published=True)
+        posts = Post.released_objects.all()
         portfolio = Portfolio.objects.filter(is_active=True)
 
         context['testimonials'] = testimonials
         context['certificates'] = certificates
-        context['posts'] = blogs
-        context['portfolio'] = portfolio
+        context['posts'] = posts[:2]
+        context['portfolio'] = portfolio[:2]
 
         return context
