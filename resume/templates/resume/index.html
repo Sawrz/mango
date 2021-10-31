@@ -71,14 +71,12 @@ Start Content
                         <div class="keySkillCol">
                             <h4 class="smTitle pb-3">Key Skills</h4>
                             {% for sk in me.profile.profile.soft_skills.all %}
-                                {% if sk.is_active %}
-                                    <div class="keySkillCard">
-                                        <div class="ksIconCol">
-                                            <img src="{{ sk.image.url }}" alt="...">
-                                        </div>
-                                        <span class="ksText">{{ sk.name }}</span>
+                                <div class="keySkillCard">
+                                    <div class="ksIconCol">
+                                        <img src="{{ sk.image.url }}" alt="...">
                                     </div>
-                                {% endif %}
+                                    <span class="ksText">{{ sk.name }}</span>
+                                </div>
                             {% endfor %}
                         </div>
                     </div>
@@ -87,24 +85,22 @@ Start Content
                         <div class="progressCol">
                             <div class="progressCard">
                                 {% for sk in me.profile.profile.technical_skills.all %}
-                                    {% if sk.is_active %}
-                                        <div class="progressCol">
-                                            <span class="progressLbl">{{ sk.name }}</span>
-                                            <div class="row g-2 align-items-center">
-                                                <div class="col">
-                                                    <div class="progress progressStyle">
-                                                        <div class="progress-bar" role="progressbar"
-                                                             style="width: {{ sk.score }}%"
-                                                             aria-valuenow="{{ sk.score }}" aria-valuemin="0"
-                                                             aria-valuemax="100"></div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-auto">
-                                                    <span class="pLbl">{{ sk.score }}%</span>
+                                    <div class="progressCol">
+                                        <span class="progressLbl">{{ sk.name }}</span>
+                                        <div class="row g-2 align-items-center">
+                                            <div class="col">
+                                                <div class="progress progressStyle">
+                                                    <div class="progress-bar" role="progressbar"
+                                                         style="width: {{ sk.score }}%"
+                                                         aria-valuenow="{{ sk.score }}" aria-valuemin="0"
+                                                         aria-valuemax="100"></div>
                                                 </div>
                                             </div>
+                                            <div class="col-auto">
+                                                <span class="pLbl">{{ sk.score }}%</span>
+                                            </div>
                                         </div>
-                                    {% endif %}
+                                    </div>
                                 {% endfor %}
                             </div>
                         </div>
@@ -129,23 +125,20 @@ Start Content
                     <div class="swiper certificatesSlider">
                         <div class="swiper-wrapper">
                             {% for c in certificates %}
-                                {% if c.is_active %}
-                                    <div class="swiper-slide">
-                                        <div class="cardStyle1">
-                                            <h4 class="mdTitle cs1Title">
-                                                {% if c.url %}<a href="{{ c.url }}">{% endif %}
-                                                    {{ c.title }}
-                                                {% if c.url %}</a>{% endif %}
-
-                                            </h4>
-                                            <ul class="cardOptionCol">
-                                                <li>{{ c.date_received }}</li>
-                                                <li>{{ c.institution }}</li>
-                                            </ul>
-                                            <p>{{ c.description }}</p>
-                                        </div>
+                                <div class="swiper-slide">
+                                    <div class="cardStyle1">
+                                        <h4 class="mdTitle cs1Title">
+                                            {% if c.url %}<a href="{{ c.url }}">{% endif %}
+                                            {{ c.title }}
+                                            {% if c.url %}</a>{% endif %}
+                                        </h4>
+                                        <ul class="cardOptionCol">
+                                            <li>{{ c.date_received }}</li>
+                                            <li>{{ c.institution }}</li>
+                                        </ul>
+                                        <p>{{ c.description }}</p>
                                     </div>
-                                {% endif %}
+                                </div>
                             {% endfor %}
                         </div>
                     </div>
@@ -170,30 +163,28 @@ Start Content
                         </div>
                     </div>
                     {% for p in portfolio %}
-                        {% if p.is_active %}
-                            <div class="portfolioCard">
-                                <div class="row g-4 align-items-center">
-                                    <div class="col-md-auto">
-                                        <div class="portfolioImgCol">
-                                            <a href="{% url 'portfolio:project' slug=p.slug %}"><img
-                                                    src="{{ p.image.url }}"
-                                                    alt="..."></a>
-                                        </div>
+                        <div class="portfolioCard">
+                            <div class="row g-4 align-items-center">
+                                <div class="col-md-auto">
+                                    <div class="portfolioImgCol">
+                                        <a href="{% url 'portfolio:project' slug=p.slug %}"><img
+                                                src="{{ p.image.url }}"
+                                                alt="..."></a>
                                     </div>
-                                    <div class="col-md">
-                                        <div class="portfolioContentCol">
-                                            <h4 class="lgTitle"><a
-                                                    href="{% url 'portfolio:project' slug=p.slug %}">{{ p.name }}</a>
-                                            </h4>
-                                            <ul class="portfolioOption">
-                                                <li><span class="dateLbl">{{ p.date.year }}</span></li>
-                                            </ul>
-                                            <p>{{ p.description }}</p>
-                                        </div>
+                                </div>
+                                <div class="col-md">
+                                    <div class="portfolioContentCol">
+                                        <h4 class="lgTitle"><a
+                                                href="{% url 'portfolio:project' slug=p.slug %}">{{ p.name }}</a>
+                                        </h4>
+                                        <ul class="portfolioOption">
+                                            <li><span class="dateLbl">{{ p.date.year }}</span></li>
+                                        </ul>
+                                        <p>{{ p.description }}</p>
                                     </div>
                                 </div>
                             </div>
-                        {% endif %}
+                        </div>
                     {% endfor %}
                 </div>
                 <div class="testimonialCol">
@@ -202,37 +193,33 @@ Start Content
                         <div class="swiper testimonialSwiper">
                             <div class="swiper-wrapper">
                                 {% for t in testimonials %}
-                                    {% if t.is_active %}
-                                        <div class="swiper-slide">
-                                            <div class="testimonialCard">
-                                                <div class="row align-items-center">
-                                                    <div class="col-sm-auto">
-                                                        <div class="tImgCol">
-                                                            <img src="{{ t.thumbnail.url }}" alt="...">
-                                                        </div>
+                                    <div class="swiper-slide">
+                                        <div class="testimonialCard">
+                                            <div class="row align-items-center">
+                                                <div class="col-sm-auto">
+                                                    <div class="tImgCol">
+                                                        <img src="{{ t.thumbnail.url }}" alt="...">
                                                     </div>
-                                                    <div class="col-sm">
-                                                        <div class="tContentCol">
-                                                            <h4 class="xsTitle bold">
-                                                                {% if t.profile_url %}
-                                                                    <a href="{{ t.profile_url }}"> {% endif %}
-                                                                {{ t.first_name }} {{ t.last_name }} - {{ t.role }}
-                                                                {% if t.profile_url %} </a> {% endif %}
-                                                            </h4>
-                                                            <p>{{ t.quote }}</p>
-                                                        </div>
+                                                </div>
+                                                <div class="col-sm">
+                                                    <div class="tContentCol">
+                                                        <h4 class="xsTitle bold">
+                                                            {% if t.profile_url %}
+                                                                <a href="{{ t.profile_url }}"> {% endif %}
+                                                            {{ t.first_name }} {{ t.last_name }} - {{ t.role }}
+                                                            {% if t.profile_url %} </a> {% endif %}
+                                                        </h4>
+                                                        <p>{{ t.quote }}</p>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    {% endif %}
+                                    </div>
                                 {% endfor %}
                             </div>
                             <div class="test-swiper-button-next swiper-button-next swiperBtnStyle"></div>
                             <div class="test-swiper-button-prev swiper-button-prev swiperBtnStyle"></div>
                         </div>
-
-
                     </div>
                 </div>
             </div>
@@ -252,7 +239,6 @@ Start Content
                 </div>
                 <div class="row g-3">
                     {% for p in posts %}
-                        {% if p.published %}
                             <div class="col-lg-6">
                                 <div class="cardStyle1">
                                     <h4 class="mdTitle cs1Title"><a
@@ -264,7 +250,6 @@ Start Content
                                     <p>{{ p.body }}</p>
                                 </div>
                             </div>
-                        {% endif %}
                     {% endfor %}
                 </div>
             </div>
