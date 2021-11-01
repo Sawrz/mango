@@ -23,6 +23,7 @@ class PostAdmin(MarkdownAdmin):
                     'subtitle',
                     'publish_date',
                     'published',
+                    'slug',
                     )
     list_filter = ('published',
                    'publish_date',
