@@ -1,5 +1,4 @@
 from django.db import models
-from django.template.defaultfilters import slugify
 from main.models import Profile
 from datetime import datetime
 import pytz
@@ -32,7 +31,7 @@ class Category(models.Model):
 class PostReleaseManager(models.Manager):
     def get_queryset(self):
         posts = super(PostReleaseManager, self).get_queryset().filter(published=True)
-        post_ids = [p.id for p in posts if datetime.now(tz=pytz.UTC) >= p.publish_date.replace(tzinfo=pytz.UTC)]
+        post_ids = [p.id for p in posts if p.released()]
 
         return posts.filter(id__in=post_ids)
 
@@ -68,3 +67,6 @@ class Post(models.Model):
 
     def get_absolute_url(self):
         return f'/blog/{self.slug}'
+
+    def released(self):
+        return datetime.now(tz=pytz.UTC) >= self.publish_date.replace(tzinfo=pytz.UTC)
