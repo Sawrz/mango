@@ -1,6 +1,7 @@
 {% extends 'main/base.html' %}
 {% load static %}
 {% load martortags %}
+{% load links %}
 
 <!-- ================================
 Start SEO blocks
@@ -69,7 +70,7 @@ Start Content
     <section>
         <div class="sectionSpaceSm">
             <div class="container martor-preview">
-                {{ object.body|safe_markdown }}
+                {{ object.body|internal_links|safe_markdown }}
             </div>
         </div>
     </section>
