@@ -1,0 +1,37 @@
+{% load static %}
+
+<div class="testimonialCol">
+    <h4 class="smText regular d-block">Testimonials</h4>
+    <div class="testimonialSlider">
+        <div class="swiper testimonialSwiper">
+            <div class="swiper-wrapper">
+                {% for t in testimonials %}
+                    <div class="swiper-slide">
+                        <div class="testimonialCard">
+                            <div class="row align-items-center">
+                                <div class="col-sm-auto">
+                                    <div class="tImgCol">
+                                        <img src="{{ t.thumbnail.url }}" alt="...">
+                                    </div>
+                                </div>
+                                <div class="col-sm">
+                                    <div class="tContentCol">
+                                        <h4 class="xsTitle bold">
+                                            {% if t.profile_url %}
+                                                <a href="{{ t.profile_url }}"> {% endif %}
+                                            {{ t.first_name }} {{ t.last_name }} - {{ t.role }}
+                                            {% if t.profile_url %} </a> {% endif %}
+                                        </h4>
+                                        <p>{{ t.quote }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+            <div class="test-swiper-button-next swiper-button-next swiperBtnStyle"></div>
+            <div class="test-swiper-button-prev swiper-button-prev swiperBtnStyle"></div>
+        </div>
+    </div>
+</div>
