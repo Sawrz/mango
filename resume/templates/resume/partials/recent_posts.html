@@ -18,7 +18,9 @@
                     <li>{{ p.published_date.date }}</li>
                     <li>{{ p.author }}</li>
                 </ul>
-                <p>{{ p.body }}</p>
+                <p>{{ p.body|safe_markdown|slice:":200" }}
+                    <a href="{% url 'blog:post' slug=p.slug %}">...</a>
+                </p>
             </div>
         </div>
     {% endfor %}

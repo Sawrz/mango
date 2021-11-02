@@ -37,7 +37,9 @@
                                 </span>
                             </li>
                         </ul>
-                        <p>{{ p.description }}</p>
+                        <p>{{ p.body|safe_markdown|slice:":200" }}
+                            <a href="{% url 'portfolio:project' slug=p.slug %}">...</a>
+                        </p>
                     </div>
                 </div>
             </div>
