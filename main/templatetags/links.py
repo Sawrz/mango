@@ -1,6 +1,7 @@
 from django import template
 from django.urls import reverse
 from blog.models import Post
+from portfolio.models import Project
 import re
 from flashtext import KeywordProcessor
 
@@ -15,8 +16,10 @@ def internal_links(value):
     if len(link_patterns) == 0:
         return value
 
-    model_types = {'blog': Post, }
-    view_names = {'blog': 'post'}
+    model_types = {'blog': Post,
+                   'portfolio': Project}
+    view_names = {'blog': 'post',
+                  'portfolio': 'project'}
     keyword_processor = KeywordProcessor()
 
     for lp in link_patterns:

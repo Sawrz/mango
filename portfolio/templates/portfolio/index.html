@@ -51,17 +51,14 @@ Start Content
                 <div class="portfolioContentMain">
                     <div class="row g-3 g-md-4 g-lg-5 portfolioRow">
                         {% for p in object_list %}
-                            {% if p.is_active %}
-                                <div class="col-md-6 pColMain">
-                                    <div class="pCol">
-                                        <a href="{% url 'portfolio:project' slug=p.slug %}">
-                                            <img src="{{ p.image.url }}" alt="..." class="pImg">
-                                        </a>
-                                    </div>
+                            <div class="col-md-6 pColMain">
+                                <div class="pCol">
+                                    <a href="{% url 'portfolio:project' slug=p.slug %}">
+                                        <img src="{{ p.thumbnail.url }}" alt="..." class="pImg">
+                                    </a>
                                 </div>
-                            {% endif %}
+                            </div>
                         {% endfor %}
-
                     </div>
                 </div>
             </div>

@@ -1,10 +1,12 @@
 {% extends 'main/base.html' %}
 {% load static %}
+{% load martortags %}
+{% load links %}
 
 <!-- ================================
 Start SEO blocks
 ================================= -->
-{% block title %}Lazy Data Scientist - Portfolio{% endblock %}
+{% block title %}Lazy Data Scientist - {{ object.title }}{% endblock %}
 {% block description %}{% endblock %}
 {% block keywords %}{% endblock %}
 <!-- ================================
@@ -14,7 +16,10 @@ End SEO blocks
 <!-- ================================
 Start CSS blocks
 ================================= -->
-{% block extend_header %}{% endblock %}
+{% block extend_header %}
+    <link href="{% static 'plugins/css/ace.min.css' %}" type="text/css" media="all" rel="stylesheet"/>
+    <link href="{% static 'martor/css/martor.bootstrap.min.css' %}" type="text/css" media="all" rel="stylesheet"/>
+{% endblock %}
 <!-- ================================
 End CSS blocks
 ================================= -->
@@ -22,7 +27,14 @@ End CSS blocks
 <!-- ================================
 Start script blocks
 ================================= -->
-{% block extend_footer %}{% endblock %}
+{% block extend_footer %}
+    <script type="text/javascript" src="{% static 'plugins/js/highlight.min.js' %}"></script>
+    <script>
+        $('.martor-preview pre').each(function (i, block) {
+            hljs.highlightBlock(block);
+        });
+    </script>
+{% endblock %}
 <!-- ================================
 End script blocks
 ================================= -->
@@ -37,7 +49,7 @@ Start Content
                 <div class="row g-4 g-md-3  align-items-center">
                     <div class="col-md-6">
                         <div class="bannerContent">
-                            <h1 class="xlTitle pb-md-3">{{ object.name }}</h1>
+                            <h1 class="xlTitle pb-md-3">{{ object.name|title }}</h1>
                         </div>
                     </div>
                 </div>
@@ -48,7 +60,7 @@ Start Content
     <section>
         <div class="sectionSpaceSm">
             <div class="container">
-                {{ object.body|safe }}
+                {{ object.body|internal_links|safe_markdown }}
             </div>
         </div>
     </section>
