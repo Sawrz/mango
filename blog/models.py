@@ -12,6 +12,7 @@ class Tag(models.Model):
         ordering = ['name']
 
     name = models.CharField(max_length=50, unique=True)
+    description = models.CharField(max_length=255, blank=True, null=True)
 
     def __str__(self):
         return self.name
@@ -23,6 +24,7 @@ class Category(models.Model):
         verbose_name_plural = 'Categories'
 
     name = models.CharField(max_length=50, unique=True)
+    description = models.CharField(max_length=255, blank=True, null=True)
 
     def __str__(self):
         return self.name
