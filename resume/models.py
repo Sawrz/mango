@@ -54,7 +54,7 @@ class Testimonial(models.Model):
         verbose_name_plural = 'Testimonials'
         ordering = ['-date_added']
 
-    thumbnail = models.ImageField(blank=True, null=False, upload_to='resume/testimonials/thumbnails')
+    thumbnail = models.ImageField(blank=True, null=True, upload_to='resume/testimonials/thumbnails')
 
     first_name = models.CharField(max_length=255, blank=True, null=False)
     last_name = models.CharField(max_length=255, blank=True, null=False)
