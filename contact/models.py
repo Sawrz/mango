@@ -9,9 +9,9 @@ class ContactProfile(models.Model):
         ordering = ["timestamp"]
 
     timestamp = models.DateTimeField(auto_now_add=True)
-    name = models.CharField(verbose_name="Name", max_length=100)
-    email = models.EmailField(verbose_name='Email')
-    message = models.TextField(verbose_name='Message')
+    name = models.CharField(verbose_name="Name", max_length=255)
+    email = models.EmailField(verbose_name='Email', max_length=255)
+    message = models.TextField(verbose_name='Message', max_length=1000)
 
     def __str__(self):
         return f'{self.name}'

@@ -137,6 +137,15 @@ MEDIA_ROOT = BASE_DIR / 'files/mediafiles'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+# Contact
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+DEFAULT_FROM_EMAIL = 'contact@<your-domain>.com'
+EMAIL_HOST = '<Email Host SMTP Address>'
+EMAIL_HOST_USER = '<Username>'
+EMAIL_HOST_PASSWORD = '<Password>'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+
 # Martor
 # Choices are: "semantic", "bootstrap"
 MARTOR_THEME = 'bootstrap'
