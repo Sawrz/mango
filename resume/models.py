@@ -26,7 +26,7 @@ class SoftSkill(models.Model):
         ordering = ['name']
 
     name = models.CharField(max_length=255, null=False)
-    image = models.FileField(null=False, upload_to='resume/skills/soft')
+    icon = models.FileField(null=False, upload_to='resume/skills/soft')
     is_active = models.BooleanField(default=True)
 
     def __str__(self):
