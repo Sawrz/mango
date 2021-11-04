@@ -1,0 +1,36 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport'/>
+    <meta name="viewport" content="width=device-width"/>
+
+    <title>Maintenance</title>
+
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet"/>
+    <link href="{% static 'css/coming-sssoon.css' %}" rel="stylesheet"/>
+
+    <!--     Fonts     -->
+    <link href="http://netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.css" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Grand+Hotel' rel='stylesheet' type='text/css'>
+</head>
+<body>
+<div class="main" style="background-image: url({% static 'images/default.jpg' %})">
+    <div class="cover black" data-color="black"></div>
+
+    <div class="container">
+        <h1 class="logo cursive">
+            {% block title %}{% endblock %}
+        </h1>
+        <!--  H1 can have 2 designs: "logo" and "logo cursive"           -->
+
+        <div class="content">
+            <h4 class="motto">{% block motto %}{% endblock %}</h4>
+        </div>
+    </div>
+</div>
+</body>
+</html>
