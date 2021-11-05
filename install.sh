@@ -1,2 +1,2 @@
 bash migrations.sh
-python manage.py collectstatic --noinput
+python3 manage.py collectstatic --noinput

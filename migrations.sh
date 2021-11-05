@@ -1,7 +1,7 @@
-python manage.py makemigrations main
-python manage.py makemigrations blog
-python manage.py makemigrations contact
-python manage.py makemigrations portfolio
-python manage.py makemigrations resume
-python manage.py migrate
+python3 manage.py makemigrations main
+python3 manage.py makemigrations blog
+python3 manage.py makemigrations contact
+python3 manage.py makemigrations portfolio
+python3 manage.py makemigrations resume
+python3 manage.py migrate
 

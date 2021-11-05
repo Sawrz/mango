@@ -1,8 +1,8 @@
 /main/migrations/
-/files/
 /db.sqlite3
 /blog/migrations/
 /contact/migrations/
 /portfolio/migrations/
 /resume/migrations/
 /.idea/
+/staticfiles/
