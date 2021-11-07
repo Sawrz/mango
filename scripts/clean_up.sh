@@ -1,3 +1,5 @@
+cd ..
+
 rm -rf main/migrations
 rm -rf blog/migrations
 rm -rf contact/migrations
