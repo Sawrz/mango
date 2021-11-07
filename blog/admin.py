@@ -1,6 +1,6 @@
 from django.contrib import admin
 from main.admin import MarkdownAdmin
-from .models import Post, Category, Tag
+from .models import Post, Category, SubCategory, Tag
 
 
 # Register your models here.
@@ -9,11 +9,33 @@ class TagAdmin(admin.ModelAdmin):
     list_display = ('id',
                     'name')
 
+    search_fields = (
+        'name',
+    )
+
 
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
     list_display = ('id',
                     'name')
+
+    search_fields = (
+        'name',
+    )
+
+
+@admin.register(SubCategory)
+class SubCategoryAdmin(admin.ModelAdmin):
+    list_display = ('id',
+                    'name',
+                    'category')
+
+    list_filter = ('category',
+                   )
+
+    search_fields = (
+        'name',
+    )
 
 
 @admin.register(Post)

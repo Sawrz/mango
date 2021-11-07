@@ -30,6 +30,19 @@ class Category(models.Model):
         return self.name
 
 
+class SubCategory(models.Model):
+    class Meta:
+        verbose_name = 'Subcategory'
+        verbose_name_plural = 'Subcategories'
+
+    category = models.ForeignKey(Category, blank=False, null=False, on_delete=models.CASCADE)
+    name = models.CharField(max_length=50, unique=True)
+    description = models.CharField(max_length=255, blank=True, null=True)
+
+    def __str__(self):
+        return self.name
+
+
 class PostReleaseManager(models.Manager):
     def get_queryset(self):
         posts = super(PostReleaseManager, self).get_queryset().filter(published=True)
