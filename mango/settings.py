@@ -12,23 +12,26 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 from pathlib import Path
 import os
+import json
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-HOME_DIR = os.path.expanduser('~')
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-with open(os.path.join(HOME_DIR, '.secrets/django.txt')) as f:
-    SECRET_KEY = f.read().strip()
+
+with open(os.path.join(BASE_DIR, 'mango.json'), 'r') as json_file:
+    CONFIG = json.load(json_file)
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-MAINTENANCE_MODE = True
+DEBUG = CONFIG['debug']
+MAINTENANCE = CONFIG['maintenance']
+LAUNCHED = CONFIG['launched']
 
-ALLOWED_HOSTS = []
+# SECURITY WARNING: keep the secret key used in production secret!
+SECRET_KEY = CONFIG['secret_key']
+ALLOWED_HOSTS = CONFIG['allowed_hosts']
 
 # Application definition
 
@@ -146,12 +149,13 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Contact
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-DEFAULT_FROM_EMAIL = 'contact@<your-domain>.com'
-EMAIL_HOST = '<Email Host SMTP Address>'
-EMAIL_HOST_USER = '<Username>'
-EMAIL_HOST_PASSWORD = '<Password>'
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
+DEFAULT_FROM_EMAIL = CONFIG['email_settings']['default_from_email']
+EMAIL_HOST = CONFIG['email_settings']['host']
+EMAIL_HOST_USER = CONFIG['email_settings']['user']
+EMAIL_HOST_PASSWORD = CONFIG['email_settings']['password']
+EMAIL_PORT = CONFIG['email_settings']['port']
+EMAIL_USE_TLS = CONFIG['email_settings']['tls']
+EMAIL_USE_SSL = CONFIG['email_settings']['ssl']
 
 # Martor
 # Choices are: "semantic", "bootstrap"

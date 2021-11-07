@@ -27,7 +27,7 @@ urlpatterns = [
     path('martor/', include('martor.urls')),
 ]
 
-if settings.MAINTENANCE_MODE:
+if settings.MAINTENANCE:
     urlpatterns = [
         path('admin/', admin.site.urls),
         path('', include('main.urls', namespace='main'))

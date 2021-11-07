@@ -1,5 +1,4 @@
 /main/migrations/
-/db.sqlite3
 /blog/migrations/
 /contact/migrations/
 /portfolio/migrations/
@@ -7,3 +6,5 @@
 /.idea/
 /staticfiles/
 /mediafiles/
+/db.sqlite3
+/mango.json
