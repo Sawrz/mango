@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Profile, Testimonial, Certificate, SoftSkill, TechnicalSkill
+from .models import Profile, Testimonial, Certificate, SoftSkill, TechnicalSkill, TechnicalSubSkill
 
 
 # Register your models here.
@@ -12,8 +12,24 @@ class TechnicalSkillAdmin(admin.ModelAdmin):
                     )
     list_filter = ('is_active',
                    )
-    list_editable = ('score',
-                     'is_active',
+    list_editable = ('is_active',
+                     )
+    search_fields = ('name',
+                     )
+
+
+@admin.register(TechnicalSubSkill)
+class TechnicalSubSkillAdmin(admin.ModelAdmin):
+    list_display = ('id',
+                    'name',
+                    'weight',
+                    'score',
+                    )
+    list_filter = ('technical_skill',
+                   'weight',
+                   )
+    list_editable = ('weight',
+                     'score',
                      )
     search_fields = ('name',
                      )
