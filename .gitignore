@@ -7,4 +7,4 @@
 /staticfiles/
 /mediafiles/
 /db.sqlite3
-/mango.json
+/mango/.env

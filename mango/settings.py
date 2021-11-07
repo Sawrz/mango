@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 from pathlib import Path
 import os
 import json
+import environ
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -20,18 +21,25 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
-
-with open(os.path.join(BASE_DIR, 'mango.json'), 'r') as json_file:
-    CONFIG = json.load(json_file)
+env = environ.Env(
+    DEBUG=(bool, False),
+    MAINTENANCE=(bool, True),
+    LAUNCHED=(bool,False),
+    ALLOWED_HOSTS=(list, []),
+    EMAIL_PORT=(int, 587),
+    EMAIL_TLS=(bool, False),
+    EMAIL_SSL=(bool, False)
+)
+environ.Env.read_env()
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = CONFIG['debug']
-MAINTENANCE = CONFIG['maintenance']
-LAUNCHED = CONFIG['launched']
+DEBUG = env('DEBUG')
+MAINTENANCE = env('MAINTENANCE')
+LAUNCHED = env('LAUNCHED')
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = CONFIG['secret_key']
-ALLOWED_HOSTS = CONFIG['allowed_hosts']
+SECRET_KEY = env('SECRET_KEY', default='unsafe-secret-key')
+ALLOWED_HOSTS = env('ALLOWED_HOSTS')
 
 # Application definition
 
@@ -149,13 +157,13 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Contact
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-DEFAULT_FROM_EMAIL = CONFIG['email_settings']['default_from_email']
-EMAIL_HOST = CONFIG['email_settings']['host']
-EMAIL_HOST_USER = CONFIG['email_settings']['user']
-EMAIL_HOST_PASSWORD = CONFIG['email_settings']['password']
-EMAIL_PORT = CONFIG['email_settings']['port']
-EMAIL_USE_TLS = CONFIG['email_settings']['tls']
-EMAIL_USE_SSL = CONFIG['email_settings']['ssl']
+DEFAULT_FROM_EMAIL = env('DEFAULT_FROM_EMAIL', default='contact@localhost')
+EMAIL_HOST = env('EMAIL_HOST', default='localhost')
+EMAIL_HOST_USER = env('EMAIL_USER', default='')
+EMAIL_HOST_PASSWORD = env('EMAIL_PASSWORD', default='')
+EMAIL_PORT = env('EMAIL_PORT', default=25)
+EMAIL_USE_TLS = env('EMAIL_TLS', default=False)
+EMAIL_USE_SSL = env('EMAIL_SSL', default=False)
 
 # Martor
 # Choices are: "semantic", "bootstrap"
