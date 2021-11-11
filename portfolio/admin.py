@@ -9,14 +9,14 @@ class ProjectAdmin(MarkdownAdmin):
     list_display = ('id',
                     'name',
                     'category',
-                    'date_created',
+                    'publish_date',
                     'date_modified',
                     'date_finished',
                     'published',
                     'slug',
                     )
     list_filter = ('published',
-                   'date_created',
+                   'publish_date',
                    'date_finished',
                    )
     list_editable = (

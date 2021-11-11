@@ -15,11 +15,8 @@ class ProjectsListView(generic.ListView):
     def get_context_data(self, **kwargs):
         context = super(ProjectsListView, self).get_context_data(**kwargs)
 
-        data_analyses = Project.objects.filter(published=True, category='data analysis')
-        software_projects = Project.objects.filter(published=True, category='software project')
-
-        context['data_analyses'] = data_analyses
-        context['software_projects'] = software_projects
+        context['data_analyses'] = Project.released_objects.filter(category='data analysis')
+        context['software_projects'] = Project.released_objects.filter(category='software project')
 
         return context
 
@@ -30,7 +27,7 @@ class ProjectDetailView(generic.DetailView):
     def get(self, request, *args, **kwargs):
         project = self.get_object()
 
-        if project.published:
+        if project.published and project.released():
             return super(ProjectDetailView, self).get(request, *args, **kwargs)
         else:
             raise Http404
