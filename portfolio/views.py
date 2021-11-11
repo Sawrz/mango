@@ -26,7 +26,6 @@ class ProjectsListView(generic.ListView):
 
 class ProjectDetailView(generic.DetailView):
     model = Project
-    template_name = 'portfolio/project.html'
 
     def get(self, request, *args, **kwargs):
         project = self.get_object()
@@ -35,3 +34,11 @@ class ProjectDetailView(generic.DetailView):
             return super(ProjectDetailView, self).get(request, *args, **kwargs)
         else:
             raise Http404
+
+
+class DataAnalysisDetailView(ProjectDetailView):
+    template_name = 'portfolio/data_analysis.html'
+
+
+class SoftwareProjectDetailView(ProjectDetailView):
+    template_name = 'portfolio/software_project.html'

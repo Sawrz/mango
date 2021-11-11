@@ -4,7 +4,7 @@
     <div class="row g-4 align-items-center">
         <div class="col-md-auto">
             <div class="portfolioImgCol">
-                <a href="{% url 'portfolio:project' slug=p.slug %}"><img
+                <a href="{% url 'portfolio:software_project' slug=p.slug %}"><img
                         src="{{ p.thumbnail.url }}"
                         alt="..."></a>
             </div>
@@ -12,7 +12,7 @@
         <div class="col-md">
             <div class="portfolioContentCol">
                 <h4 class="lgTitle"><a
-                        href="{% url 'portfolio:project' slug=p.slug %}">{{ p.name }}</a>
+                        href="{% url 'portfolio:software_project' slug=p.slug %}">{{ p.name }}</a>
                 </h4>
                 <ul class="portfolioOption">
                     <li>
