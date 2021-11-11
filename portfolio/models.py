@@ -26,6 +26,14 @@ class Project(models.Model):
     ]
     category = models.CharField(max_length=32, choices=CATEGORY, blank=False, null=False)
 
+    MAINTAINER = 'maintainer'
+    CONTRIBUTOR = 'Contributor'
+    ROLE = [
+        (MAINTAINER, 'Maintainer'),
+        (CONTRIBUTOR, 'Contributor')
+    ]
+    role = models.CharField(max_length=32, choices=ROLE, blank=False, null=False, default=MAINTAINER)
+
     date_created = models.DateField(blank=False, null=False)
     date_modified = models.DateField(auto_now=True)
     date_finished = models.DateField(blank=True, null=True)
