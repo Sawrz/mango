@@ -1,7 +1,6 @@
 from django.views import generic
 from .models import Post
-from django.urls import reverse
-from django.shortcuts import redirect
+from django.http import Http404
 
 
 # Create your views here.
@@ -23,4 +22,4 @@ class PostDetailView(generic.DetailView):
         if post.published and post.released():
             return super(PostDetailView, self).get(request, *args, **kwargs)
         else:
-            return redirect(reverse('blog:posts'))
+            raise Http404
