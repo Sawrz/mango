@@ -1,0 +1,27 @@
+{% load static %}
+{% load martortags %}
+
+<div class="row pb-3">
+    <div class="col">
+        <h4 class="smText regular">Recent Analyses</h4>
+    </div>
+    <div class="col-auto">
+        <a href="{% url 'portfolio:data-analyses' %}" class="simpleLink">View all</a>
+    </div>
+</div>
+<div class="row g-3">
+    {% for p in data_analyses %}
+        <div class="col-lg-6">
+            <div class="cardStyle1">
+                <h4 class="mdTitle cs1Title"><a
+                        href="{% url 'portfolio:data-analysis' slug=p.slug %}">{{ p.name }}</a></h4>
+                <ul class="cardOptionCol">
+                    <li>{{ p.date_modified.date }}</li>
+                </ul>
+                <p>{{ p.body|safe_markdown|slice:":200" }}
+                    <a href="{% url 'portfolio:data-analysis' slug=p.slug %}">...</a>
+                </p>
+            </div>
+        </div>
+    {% endfor %}
+</div>

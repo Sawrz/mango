@@ -1,0 +1,11 @@
+{% extends 'portfolio/base.html' %}
+{% load static %}
+
+
+{% block project_link %}
+    <a href="{% url 'portfolio:data-analysis' slug=p.slug %}">
+        <img src="{{ p.thumbnail.url }}" alt="..." class="pImg">
+    </a>
+{% endblock %}
+
+

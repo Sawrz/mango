@@ -1,5 +1,5 @@
 from .models import Testimonial, Certificate
-from portfolio.models import Project
+from portfolio.models import DataAnalysis, SoftwareProject
 from blog.models import Post
 from django.views import generic
 
@@ -14,11 +14,12 @@ class IndexView(generic.TemplateView):
         testimonials = Testimonial.objects.filter(is_active=True)
         certificates = Certificate.objects.filter(is_active=True)
         posts = Post.released_objects.all()
-        portfolio = Project.objects.filter(show_up=True)
+        data_analyses = DataAnalysis.objects.filter(published=True)
+        software_projects = SoftwareProject.objects.filter(published=True)
 
         context['testimonials'] = testimonials
         context['certificates'] = certificates
         context['posts'] = posts[:2]
-        context['portfolio'] = portfolio[:2]
+        context['data_analyses'] = data_analyses[:2]
 
         return context

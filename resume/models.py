@@ -10,7 +10,7 @@ class TechnicalSkill(models.Model):
         verbose_name_plural = 'Technical Skills'
         ordering = ['-score', 'name']
 
-    name = models.CharField(max_length=255, null=False)
+    name = models.CharField(max_length=255, null=False, unique=True)
     score = models.PositiveIntegerField(default=0, null=False, blank=False)
     is_active = models.BooleanField(default=True)
 
@@ -25,7 +25,7 @@ class TechnicalSubSkill(models.Model):
         ordering = ['-weight', '-score', 'name']
 
     technical_skill = models.ForeignKey(TechnicalSkill, blank=False, null=False, on_delete=models.CASCADE)
-    name = models.CharField(max_length=255, null=False)
+    name = models.CharField(max_length=255, null=False, unique=True)
     score = models.PositiveIntegerField(default=80, validators=[MinValueValidator(0), MaxValueValidator(100)],
                                         null=False, blank=False)
     weight = models.PositiveIntegerField(default=10, validators=[MinValueValidator(0), MaxValueValidator(10)],
@@ -41,7 +41,7 @@ class SoftSkill(models.Model):
         verbose_name_plural = 'Soft Skills'
         ordering = ['name']
 
-    name = models.CharField(max_length=255, null=False)
+    name = models.CharField(max_length=255, null=False, unique=True)
     icon = models.FileField(null=False, upload_to='resume/skills/soft')
     is_active = models.BooleanField(default=True)
 

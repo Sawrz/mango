@@ -1,23 +1,51 @@
 from django.contrib import admin
 from main.admin import MarkdownAdmin
-from .models import Project
+from .models import DataAnalysis, SoftwareProject
 
 
 # Register your models here.
-@admin.register(Project)
-class ProjectAdmin(MarkdownAdmin):
+@admin.register(DataAnalysis)
+class DataAnlysisAdmin(MarkdownAdmin):
     list_display = ('id',
                     'name',
                     'date_created',
                     'date_modified',
-                    'show_up',
+                    'published',
                     'slug',
                     )
-    list_filter = ('show_up',
+    list_filter = ('published',
                    'date_created',
                    )
     list_editable = (
-        'show_up',
+        'published',
+    )
+    search_fields = (
+        'name',
+        'slug',
+        'body',
+    )
+
+    prepopulated_fields = {
+        "slug": (
+            "name",
+        )
+    }
+
+
+@admin.register(SoftwareProject)
+class SoftwareProjectAdmin(MarkdownAdmin):
+    list_display = ('id',
+                    'name',
+                    'date_created',
+                    'date_modified',
+                    'published',
+                    'slug',
+                    )
+    list_filter = ('published',
+                   'date_created',
+                   )
+    list_editable = (
+        'published',
     )
     search_fields = (
         'name',

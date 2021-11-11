@@ -46,16 +46,19 @@ Start Content
     </section>
 
     <section>
-        <div class="sectionSpaceSm lightBg">
+        <div class="lightBg">
             <div class="container">
-                {% include 'portfolio/partials/recent_data_analyses.html' %}
-            </div>
-        </div>
-    </section>
-    <section>
-        <div class="sectionSpaceSm">
-            <div class="container">
-                {% include 'portfolio/partials/recent_software_projects.html' %}
+                <div class="portfolioContentMain">
+                    <div class="row g-3 g-md-4 g-lg-5 portfolioRow">
+                        {% for p in object_list %}
+                            <div class="col-md-6 pColMain">
+                                <div class="pCol">
+                                    {% block project_link %} {% endblock %}
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
             </div>
         </div>
     </section>
