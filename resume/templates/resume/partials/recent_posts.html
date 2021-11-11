@@ -1,5 +1,3 @@
-{% load martortags %}
-
 <div class="row pb-3">
     <div class="col">
         <h4 class="smText regular">Recent posts</h4>
@@ -8,20 +6,8 @@
         <a href="{% url 'blog:posts' %}" class="simpleLink">View all</a>
     </div>
 </div>
-<div class="row g-3">
+<div class="card-group">
     {% for p in posts %}
-        <div class="col-lg-6">
-            <div class="cardStyle1">
-                <h4 class="mdTitle cs1Title"><a
-                        href="{% url 'blog:post' slug=p.slug %}">{{ p.title }}</a></h4>
-                <ul class="cardOptionCol">
-                    <li>{{ p.published_date.date }}</li>
-                    <li>{{ p.author }}</li>
-                </ul>
-                <p>{{ p.body|safe_markdown|slice:":200" }}
-                    <a href="{% url 'blog:post' slug=p.slug %}">...</a>
-                </p>
-            </div>
-        </div>
+        {% include 'blog/partials/post_card.html' %}
     {% endfor %}
 </div>

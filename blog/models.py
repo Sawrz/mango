@@ -61,6 +61,7 @@ class Post(models.Model):
     subtitle = models.CharField(max_length=255, blank=True)
     slug = models.SlugField(max_length=255, unique=True, null=True)
     body = models.TextField(blank=True, null=True)
+    description = models.TextField(max_length=250, blank=True, null=True)
     meta_description = models.CharField(max_length=150, blank=True)
     thumbnail = models.ImageField(blank=True, null=True, upload_to='blog/thumbnails')
     banner = models.ImageField(blank=True, null=True, upload_to='blog/banners')
@@ -72,7 +73,7 @@ class Post(models.Model):
 
     author = models.ForeignKey(Profile, on_delete=models.PROTECT)
     tags = models.ManyToManyField(Tag, blank=True)
-    category = models.ForeignKey(Category, blank=True, null=True, on_delete=models.PROTECT)
+    category = models.ForeignKey(SubCategory, blank=True, null=True, on_delete=models.PROTECT)
 
     objects = models.Manager()
     released_objects = PostReleaseManager()

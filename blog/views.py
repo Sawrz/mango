@@ -8,13 +8,9 @@ from django.shortcuts import redirect
 class PostListView(generic.ListView):
     model = Post
     template_name = 'blog/index.html'
-    paginate_by = 10
-
-    def get_context_data(self, **kwargs):
-        context = super(PostListView, self).get_context_data(**kwargs)
-        context['posts'] = Post.released_objects.all()
-
-        return context
+    context_object_name = 'posts'
+    paginate_by = 4
+    queryset = Post.released_objects.all()
 
 
 class PostDetailView(generic.DetailView):

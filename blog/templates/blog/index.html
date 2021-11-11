@@ -4,7 +4,7 @@
 <!-- ================================
 Start SEO blocks
 ================================= -->
-{% block title %}Lazy Data Scientist - Portfolio{% endblock %}
+{% block title %}Lazy Data Scientist - Blog{% endblock %}
 {% block description %}{% endblock %}
 {% block keywords %}{% endblock %}
 <!-- ================================
@@ -37,7 +37,7 @@ Start Content
                 <div class="row g-4 g-md-3  align-items-center">
                     <div class="col-md-6">
                         <div class="bannerContent">
-                            <h1 class="xlTitle pb-md-3">See my recent posts below</h1>
+                            <h1 class="xlTitle pb-md-3">Blog</h1>
                         </div>
                     </div>
                 </div>
@@ -46,22 +46,13 @@ Start Content
     </section>
 
     <section>
-        <div class="lightBg">
+        <div class="sectionSpaceSm lightBg">
             <div class="container">
-                <div class="portfolioContentMain">
-                    <div class="row g-3 g-md-4 g-lg-5 portfolioRow">
-                        {% for p in posts %}
-                            <div class="col-md-6 pColMain">
-                                <div class="pCol">
-                                    <a href="{% url 'blog:post' slug=p.slug %}">
-                                        <img src="{{ p.thumbnail.url }}" alt="..." class="pImg">
-                                    </a>
-                                </div>
-                            </div>
-                        {% endfor %}
-                    </div>
-                </div>
+                {% for p in posts %}
+                    {% include 'blog/partials/post_card_horizontal.html' %}
+                {% endfor %}
             </div>
+            {% include 'main/partials/pagination.html' %}
         </div>
     </section>
 {% endblock %}
