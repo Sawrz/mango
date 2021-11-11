@@ -111,12 +111,12 @@ a, .btn {
   font-weight: var(--regular);
   font-family: var(--titleFont)
 }
-.smText {
-  font-size: 22px;
-}
 .xsTitle {
   font-size: 18px;
   line-height: normal;
+}
+.smText {
+  font-size: 22px;
 }
 
 .regular {
@@ -486,7 +486,7 @@ body.navToggleActive {
 
 /* portfolio page */
 .innerPageBannerCol {
-	padding: 180px 0 150px;
+	padding: 180px 0 40px;
 }
 .portfolioContentMain {
   position: relative;

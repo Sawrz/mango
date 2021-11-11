@@ -1,43 +1,31 @@
 from django.views import generic
-from .models import SoftwareProject, DataAnalysis
 from django.http import Http404
-from .models import DataAnalysis, SoftwareProject
+from .models import Project
 
 
 # Create your views here.
-class PortfolioView(generic.TemplateView):
+class ProjectsListView(generic.ListView):
+    model = Project
+    paginate_by = 10
     template_name = 'portfolio/index.html'
 
+    def get_queryset(self):
+        return super(ProjectsListView, self).get_queryset().filter(published=True)
+
     def get_context_data(self, **kwargs):
-        context = super(PortfolioView, self).get_context_data(**kwargs)
+        context = super(ProjectsListView, self).get_context_data(**kwargs)
 
-        data_analyses = DataAnalysis.objects.filter(published=True)
-        software_projects = SoftwareProject.objects.filter(published=True)
+        data_analyses = Project.objects.filter(published=True, category='data analysis')
+        software_projects = Project.objects.filter(published=True, category='software project')
 
-        context['data_analyses'] = data_analyses[:2]
-        context['software_projects'] = software_projects[:2]
+        context['data_analyses'] = data_analyses
+        context['software_projects'] = software_projects
 
         return context
 
 
-class ProjectListView(generic.ListView):
-    paginate_by = 10
-
-    def get_queryset(self):
-        return super(ProjectListView, self).get_queryset().filter(published=True)
-
-
-class DataAnalysesView(ProjectListView):
-    model = DataAnalysis
-    template_name = 'portfolio/data_analyses_index.html'
-
-
-class SoftwareProjectsView(ProjectListView):
-    model = SoftwareProject
-    template_name = 'portfolio/software_projects_index.html'
-
-
 class ProjectDetailView(generic.DetailView):
+    model = Project
     template_name = 'portfolio/project.html'
 
     def get(self, request, *args, **kwargs):
@@ -47,11 +35,3 @@ class ProjectDetailView(generic.DetailView):
             return super(ProjectDetailView, self).get(request, *args, **kwargs)
         else:
             raise Http404
-
-
-class DataAnalysisDetailView(ProjectDetailView):
-    model = DataAnalysis
-
-
-class SoftwareProjectDetailView(ProjectDetailView):
-    model = SoftwareProject

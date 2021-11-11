@@ -1,4 +1,3 @@
-{% load static %}
 {% load martortags %}
 
 <div class="portfolioCol">
@@ -7,42 +6,10 @@
             <h4 class="smText regular">Featured Work</h4>
         </div>
         <div class="col-auto">
-            <a href="{% url 'portfolio:data-analyses' %}" class="simpleLink">View all</a>
+            <a href="{% url 'portfolio:projects' %}" class="simpleLink">View all</a>
         </div>
     </div>
-    {% for p in data_analyses %}
-        <div class="portfolioCard">
-            <div class="row g-4 align-items-center">
-                <div class="col-md-auto">
-                    <div class="portfolioImgCol">
-                        <a href="{% url 'portfolio:data-analysis' slug=p.slug %}"><img
-                                src="{{ p.thumbnail.url }}"
-                                alt="..."></a>
-                    </div>
-                </div>
-                <div class="col-md">
-                    <div class="portfolioContentCol">
-                        <h4 class="lgTitle"><a
-                                href="{% url 'portfolio:data-analysis' slug=p.slug %}">{{ p.name }}</a>
-                        </h4>
-                        <ul class="portfolioOption">
-                            <li>
-                                <span class="dateLbl">
-                                    {{ p.date_created.year }} -
-                                    {% if p.actively_maintained %}
-                                        today
-                                    {% else %}
-                                        {{ p.date_modified.year }}
-                                    {% endif %}
-                                </span>
-                            </li>
-                        </ul>
-                        <p>{{ p.body|safe_markdown|slice:":200" }}
-                            <a href="{% url 'portfolio:data-analysis' slug=p.slug %}">...</a>
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
+    {% for p in projects %}
+        {% include 'portfolio/partials/data_analysis_card.html' %}
     {% endfor %}
 </div>

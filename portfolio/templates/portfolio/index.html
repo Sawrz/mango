@@ -37,25 +37,55 @@ Start Content
                 <div class="row g-4 g-md-3  align-items-center">
                     <div class="col-md-6">
                         <div class="bannerContent">
-                            <h1 class="xlTitle pb-md-3">See my recent projects below</h1>
+                            <h1 class="xlTitle pb-md-3">Portfolio</h1>
                         </div>
                     </div>
+                </div>
+                <p>Welcome to my Portfolio!</p>
+                <p>
+                    Here you find my different kinds of projects. The first section showcases some of the analyses I
+                    made. The goal is to use exciting data sets and answer interesting questions using data analysis
+                    techniques and technologies.
+                </p>
+                <p>
+                    The last section is about the software projects I'm involved in either as a maintainer or a regular
+                    contributor.
+                </p>
+
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="sectionSpaceSm">
+            <div class="container">
+                <div class="portfolioCol">
+                    <div class="row pb-3">
+                        <div class="col">
+                            <h2 class="lgTitle regular">Data Analyses</h2>
+                        </div>
+                    </div>
+                    {% for p in data_analyses %}
+                        {% include 'portfolio/partials/data_analysis_card.html' %}
+                    {% endfor %}
                 </div>
             </div>
         </div>
     </section>
 
     <section>
-        <div class="sectionSpaceSm lightBg">
-            <div class="container">
-                {% include 'portfolio/partials/recent_data_analyses.html' %}
-            </div>
-        </div>
-    </section>
-    <section>
         <div class="sectionSpaceSm">
             <div class="container">
-                {% include 'portfolio/partials/recent_software_projects.html' %}
+                <div class="portfolioCol">
+                    <div class="row pb-3">
+                        <div class="col">
+                            <h2 class="lgTitle regular">Software Projects</h2>
+                        </div>
+                    </div>
+                    {% for p in software_projects %}
+                        {% include 'portfolio/partials/software_project_card.html' %}
+                    {% endfor %}
+                </div>
             </div>
         </div>
     </section>

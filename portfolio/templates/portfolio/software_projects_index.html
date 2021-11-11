@@ -1,8 +1,0 @@
-{% extends 'portfolio/base.html' %}
-{% load static %}
-
-{% block project_link %}
-    <a href="{% url 'portfolio:software-project' slug=p.slug %}">
-        <img src="{{ p.thumbnail.url }}" alt="..." class="pImg">
-    </a>
-{% endblock %}
