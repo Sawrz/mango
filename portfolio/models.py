@@ -43,8 +43,8 @@ class Project(models.Model):
     ]
     role = models.CharField(max_length=32, choices=ROLE, blank=False, null=False, default=MAINTAINER)
 
-    date_created = models.DateField(auto_now=True)
-    date_modified = models.DateField(auto_now=True)
+    date_created = models.DateTimeField(auto_now=True)
+    date_modified = models.DateTimeField(auto_now=True)
     date_finished = models.DateField(blank=True, null=True)
     publish_date = models.DateField(blank=True, null=True)
     published = models.BooleanField(default=True)
