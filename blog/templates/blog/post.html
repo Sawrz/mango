@@ -8,7 +8,7 @@
 Start SEO blocks
 ================================= -->
 {% block title %}Lazy Data Scientist - {{ object.title }}{% endblock %}
-{% block description %}{% endblock %}
+{% block description %}{{ object.meta_description }}{% endblock %}
 {% block keywords %}{% endblock %}
 <!-- ================================
 End SEO blocks
@@ -19,7 +19,7 @@ Start CSS
 ================================= -->
 {% block extend_header %}
     <link href="{% static 'css/syntax.css' %}" rel="stylesheet">
-    <link href="{% static 'css/blog.css' %}" rel="stylesheet">
+    <link href="{% static 'css/post.css' %}" rel="stylesheet">
 {% endblock %}
 <!-- ================================
 End CSS
@@ -33,7 +33,7 @@ Start Content
         <div class="innerPageBannerCol">
             <div class="container">
                 <div class="row g-4 g-md-3  align-items-center">
-                    <div class="col-md-6">
+                    <div class="col-md-12">
                         <div class="bannerContent">
                             <h1 class="xlTitle pb-md-3">{{ object.title|title }}</h1>
                         </div>
@@ -42,11 +42,13 @@ Start Content
                 <div class="row">
                     <div class="col-md-auto">
                         <div class="authorCol">
-                            <h4 class="smTitle pb-3">{{ object.author|title }}</h4>
+                            <h4 class="smTitle pb-3 text-muted">{{ object.author|title }}</h4>
                         </div>
                     </div>
                     <div class="col-md">
-                        <h4 class="smTitle pb-3">{{ object.published_date.date }}</h4>
+                        <div class="dateCol">
+                            <h4 class="smTitle pb-3 text-muted">{{ object.publish_date.date }}</h4>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -55,7 +57,7 @@ Start Content
 
     <section>
         <div class="sectionSpaceSm">
-            <div class="container blog-post">
+            <div class="container post">
                 {{ object.body|internal_links|markdown|bleach }}
             </div>
         </div>
