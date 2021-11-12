@@ -1,6 +1,7 @@
 {% extends 'portfolio/base.html' %}
-{% load martortags %}
+{% load markdown_extras %}
 {% load links %}
+{% load bleach_tags %}
 
 <!-- ================================
 Start Content
@@ -23,7 +24,7 @@ Start Content
     <section>
         <div class="sectionSpaceSm">
             <div class="container">
-                {{ object.body|internal_links|safe_markdown }}
+                {{ object.body|internal_links|markdown|bleach }}
             </div>
         </div>
     </section>

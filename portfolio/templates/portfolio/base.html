@@ -1,7 +1,5 @@
 {% extends 'main/base.html' %}
 {% load static %}
-{% load martortags %}
-{% load links %}
 
 <!-- ================================
 Start SEO blocks
@@ -14,29 +12,14 @@ End SEO blocks
 ================================= -->
 
 <!-- ================================
-Start CSS blocks
+Start CSS
 ================================= -->
 {% block extend_header %}
-    <link href="{% static 'plugins/css/ace.min.css' %}" type="text/css" media="all" rel="stylesheet"/>
-    <link href="{% static 'martor/css/martor.bootstrap.min.css' %}" type="text/css" media="all" rel="stylesheet"/>
+    <link href="{% static 'css/syntax.css' %}" rel="stylesheet">
+    <link href="{% static 'css/blog.css' %}" rel="stylesheet">
 {% endblock %}
 <!-- ================================
-End CSS blocks
-================================= -->
-
-<!-- ================================
-Start script blocks
-================================= -->
-{% block extend_footer %}
-    <script type="text/javascript" src="{% static 'plugins/js/highlight.min.js' %}"></script>
-    <script>
-        $('.martor-preview pre').each(function (i, block) {
-            hljs.highlightBlock(block);
-        });
-    </script>
-{% endblock %}
-<!-- ================================
-End script blocks
+End CSS
 ================================= -->
     
 

@@ -1,4 +1,5 @@
-{% load martortags %}
+{% load markdown_extras %}
+{% load bleach_tags %}
 
 <div class="card mb-3">
     <div class="row g-0">
@@ -14,7 +15,7 @@
                 </a>
                 <p class="card-text"><small class="text-muted" style="text-align:left;">{{ p.author }}</small><small
                         class="text-muted" style="float:right;">{{ p.publish_date.date }}</small></p>
-                <p class="card-text">{{ p.description|safe_markdown }}</p>
+                <p class="card-text">{{ p.description|markdown|bleach }}</p>
             </div>
         </div>
     </div>

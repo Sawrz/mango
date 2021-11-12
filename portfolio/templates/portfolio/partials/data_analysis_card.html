@@ -1,4 +1,5 @@
-{% load martortags %}
+{% load markdown_extras %}
+{% load bleach_tags %}
 
 <div class="portfolioCard">
     <div class="row g-4 align-items-center">
@@ -23,7 +24,7 @@
                 </ul>
                 <p>
                     {% if p.description %}
-                        {{ p.description|safe_markdown }}
+                        {{ p.description|markdown|bleach }}
                     {% endif %}
                 </p>
             </div>

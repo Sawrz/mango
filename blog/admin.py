@@ -1,5 +1,4 @@
 from django.contrib import admin
-from main.admin import MarkdownAdmin
 from .models import Post, Category, SubCategory, Tag
 
 
@@ -39,7 +38,7 @@ class SubCategoryAdmin(admin.ModelAdmin):
 
 
 @admin.register(Post)
-class PostAdmin(MarkdownAdmin):
+class PostAdmin(admin.ModelAdmin):
     list_display = ('id',
                     'title',
                     'subtitle',
