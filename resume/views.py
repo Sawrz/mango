@@ -13,7 +13,7 @@ class IndexView(generic.TemplateView):
 
         testimonials = Testimonial.objects.filter(is_active=True).order_by('-date_added')
         certificates = Certificate.objects.filter(is_active=True).order_by('-date_received')
-        posts = Post.released_objects.order_by('-publish_date')[:2]
+        posts = Post.released_objects.order_by('-publish_date')[:6]
         projects = Project.objects.filter(published=True, category='data analysis').order_by('-publish_date')[:3]
 
         context['testimonials'] = testimonials

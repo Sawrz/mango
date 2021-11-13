@@ -132,8 +132,30 @@ Start Content
     <section>
         <div class="sectionSpaceSm lightBg">
             <div class="container">
-                {% include 'resume/partials/recent_posts.html' %}
+                <div class="row pb-3">
+                    <div class="col">
+                        <h4 class="smText regular">Recent posts</h4>
+                    </div>
+                    <div class="col-auto">
+                        <a href="{% url 'blog:posts' %}" class="simpleLink">View all</a>
+                    </div>
+                </div>
+                <div class="sliderOuter">
+                    <div class="swiper certificatesSlider">
+                        <div class="swiper-wrapper">
+                            {% for p in posts %}
+                                <div class="swiper-slide">
+                                    {% include 'blog/partials/post_card.html' %}
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div class="cert-swiper-button-next swiper-button-next swiperBtnStyle"></div>
+                    <div class="cert-swiper-button-prev swiper-button-prev swiperBtnStyle"></div>
+                    <div class="swiper-pagination swiperPaginationStyle posInitial"></div>
+                </div>
             </div>
+        </div>
         </div>
     </section>
 {% endblock %}

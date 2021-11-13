@@ -1,7 +1,7 @@
 {% load markdown_extras %}
 {% load bleach_tags %}
 
-<div class="card">
+<div class="card h-100">
     <a href="{% url 'blog:post' slug=p.slug %}">
         <img src="{{ p.thumbnail.url }}" class="card-img-top" alt="...">
     </a>
