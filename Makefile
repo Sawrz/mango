@@ -27,5 +27,5 @@ update: ## action after updating mango to make sure everything work as expected
 	python3 manage.py collectstatic --noinput
 
 deploy: update ## install all dependencies of mango
-	python manage.py createsuperuser
+	python3 manage.py createsuperuser
 	python3 manage.py check --deploy
