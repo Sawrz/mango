@@ -157,6 +157,10 @@ else:
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+# Site Security
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
+
 # Contact
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 DEFAULT_FROM_EMAIL = env('DEFAULT_FROM_EMAIL', default='contact@localhost')
