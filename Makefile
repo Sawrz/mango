@@ -26,4 +26,5 @@ update: ## action after updating mango to make sure everything work as expected
 	$(call make_migrations)
 	python3 manage.py collectstatic --noinput
 
-install: update ## install all dependencies of mango
+deploy: update ## install all dependencies of mango
+	python3 manage.py check --deploy

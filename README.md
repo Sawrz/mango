@@ -52,5 +52,5 @@ In addition, you can set your Email credentials, so you get an Email if somebody
 Finally, install Mangos dependencies, make the DB migrations and copy the static files:
 
 ```bash
-make install
+make deploy
 ```
