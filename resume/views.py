@@ -1,4 +1,4 @@
-from .models import Testimonial, Certificate
+from .models import Testimonial, Certificate, TechnicalSkill, TechnicalSubskill
 from portfolio.models import Project
 from blog.models import Post
 from django.views import generic
