@@ -20,6 +20,7 @@ migrate: ## migrate databases
 
 clean: ## cleans migrations and static files folder
 	$(call clean_up)
+	rm db.sqlite3
 
 update: ## action after updating mango to make sure everything work as expected
 	pip install -r requirements.txt
