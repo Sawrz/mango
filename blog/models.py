@@ -59,7 +59,7 @@ class Post(models.Model):
 
     title = models.CharField(max_length=255, unique=True)
     subtitle = models.CharField(max_length=255, blank=True)
-    slug = models.SlugField(max_length=255, unique=True, null=True)
+    slug = models.SlugField(max_length=255, unique=True, null=False)
     body = models.TextField(blank=True, null=True)
     description = models.TextField(max_length=250, blank=True, null=True)
     meta_description = models.CharField(max_length=150, blank=True)
@@ -80,9 +80,6 @@ class Post(models.Model):
 
     def __str__(self):
         return f'{self.title}-{self.subtitle}'
-
-    def get_absolute_url(self):
-        return f'/blog/{self.slug}'
 
     def released(self):
         return datetime.now(tz=pytz.UTC) >= self.publish_date.replace(tzinfo=pytz.UTC)

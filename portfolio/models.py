@@ -19,7 +19,7 @@ class Project(models.Model):
         ordering = ['-date_modified']
 
     name = models.CharField(max_length=255, unique=True)
-    slug = models.SlugField(max_length=255, unique=True, null=True)
+    slug = models.SlugField(max_length=255, unique=True, null=False)
     url = models.URLField(max_length=255, blank=True, null=True)
     body = models.TextField(blank=True, null=True)
     description = models.TextField(max_length=250, blank=True, null=True)
