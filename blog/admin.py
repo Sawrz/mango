@@ -59,7 +59,6 @@ class PostAdmin(admin.ModelAdmin):
         'slug',
         'body',
     )
-
     prepopulated_fields = {
         "slug": (
             "title",

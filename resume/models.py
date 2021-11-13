@@ -14,14 +14,16 @@ class TechnicalSkill(models.Model):
     score = models.PositiveIntegerField(default=0, null=False, blank=False)
     is_active = models.BooleanField(default=True)
 
+    slug = models.SlugField(max_length=255, unique=True, null=False)
+
     def __str__(self):
         return self.name
 
 
-class TechnicalSubSkill(models.Model):
+class TechnicalSubskill(models.Model):
     class Meta:
-        verbose_name = 'Technical Sub Skill'
-        verbose_name_plural = 'Technical Sub Skills'
+        verbose_name = 'Technical Subskill'
+        verbose_name_plural = 'Technical Subskills'
         ordering = ['-weight', '-score', 'name']
 
     technical_skill = models.ForeignKey(TechnicalSkill, blank=False, null=False, on_delete=models.CASCADE)

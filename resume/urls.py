@@ -5,4 +5,5 @@ app_name = 'resume'
 
 urlpatterns = [
     path('', views.IndexView.as_view(), name='home'),
+    path('technical-skills/<slug:slug>', views.TechnicalSkillView.as_view(), name='technical_skill'),
 ]

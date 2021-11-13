@@ -1,7 +1,7 @@
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from main.models import Profile as MainProfile
-from .models import Profile, TechnicalSkill, TechnicalSubSkill
+from .models import Profile, TechnicalSkill, TechnicalSubskill
 import numpy as np
 
 
@@ -12,7 +12,7 @@ def create_profile(sender, instance, created, **kwargs):
 
 
 def update_skill_score(technical_skill):
-    sub_skills = TechnicalSubSkill.objects.filter(technical_skill__id=technical_skill.id, weight__gt=0).all()
+    sub_skills = TechnicalSubskill.objects.filter(technical_skill__id=technical_skill.id, weight__gt=0).all()
 
     weights, scores = zip(*[(sub_skill.weight, sub_skill.score) for sub_skill in sub_skills])
     weights = np.exp(weights)
@@ -23,7 +23,7 @@ def update_skill_score(technical_skill):
     return total_points / max_total_points * 100
 
 
-@receiver(post_save, sender=TechnicalSubSkill)
+@receiver(post_save, sender=TechnicalSubskill)
 def update_technical_skill_score(sender, instance, **kwargs):
     technical_skill = TechnicalSkill.objects.get(id=instance.technical_skill.id)
     technical_skill.score = update_skill_score(technical_skill)

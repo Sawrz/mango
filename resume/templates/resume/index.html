@@ -66,7 +66,26 @@ Start Content
     <section>
         <div class="sectionSpace pt-0">
             <div class="container">
-                {% include 'resume/partials/skills.html' %}
+                <div class="row">
+                    <div class="col-md-auto">
+                        <div class="softSkillCol">
+                            <h4 class="smTitle pb-3">Soft Skills</h4>
+                            {% for sk in me.profile.profile.soft_skills.all %}
+                                {% include 'resume/partials/soft_skill.html' %}
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div class="col-md">
+                        <h4 class="smTitle pb-3">Technical Skills</h4>
+                        <div class="progressCol">
+                            <div class="progressCard">
+                                {% for sk in me.profile.profile.technical_skills.all %}
+                                    {% include 'resume/partials/technical_skill.html' %}
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>

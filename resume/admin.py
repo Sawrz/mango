@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Profile, Testimonial, Certificate, SoftSkill, TechnicalSkill, TechnicalSubSkill
+from .models import Profile, Testimonial, Certificate, SoftSkill, TechnicalSkill, TechnicalSubskill
 
 
 # Register your models here.
@@ -16,9 +16,14 @@ class TechnicalSkillAdmin(admin.ModelAdmin):
                      )
     search_fields = ('name',
                      )
+    prepopulated_fields = {
+        "slug": (
+            "name",
+        )
+    }
 
 
-@admin.register(TechnicalSubSkill)
+@admin.register(TechnicalSubskill)
 class TechnicalSubSkillAdmin(admin.ModelAdmin):
     list_display = ('id',
                     'name',

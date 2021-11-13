@@ -301,10 +301,10 @@ a, .btn {
 	display: block;
 	padding-top: 10px;
 }
-.keySkillCard + .keySkillCard {
+.softSkillCard + .softSkillCard {
   padding-top: 25px;
 }
-.keySkillCol {
+.softSkillCol {
   width: 300px;
 }
 .pLbl {

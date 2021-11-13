@@ -1,0 +1,18 @@
+<div class="progressCol">
+    <a href="{% url 'resume:technical_skill' slug=sk.slug %}">
+        <span class="progressLbl">{{ sk.name }}</span>
+    </a>
+    <div class="row g-2 align-items-center">
+        <div class="col">
+            <div class="progress progressStyle">
+                <div class="progress-bar" role="progressbar"
+                     style="width: {{ sk.score }}%"
+                     aria-valuenow="{{ sk.score }}" aria-valuemin="0"
+                     aria-valuemax="100"></div>
+            </div>
+        </div>
+        <div class="col-auto">
+            <span class="pLbl">{{ sk.score }}%</span>
+        </div>
+    </div>
+</div>

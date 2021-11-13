@@ -18,7 +18,23 @@ class IndexView(generic.TemplateView):
 
         context['testimonials'] = testimonials
         context['certificates'] = certificates
-        context['posts'] = posts[:2]
-        context['projects'] = projects[:3]
+        context['posts'] = posts
+        context['projects'] = projects
+
+        return context
+
+
+class TechnicalSkillView(generic.DetailView):
+    model = TechnicalSkill
+    template_name = 'resume/technical_skills_index.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(TechnicalSkillView, self).get_context_data(**kwargs)
+
+        skill = self.get_object()
+
+        context['sub_skills'] = TechnicalSubskill.objects.filter(technical_skill__id=skill.id).order_by('-weight',
+                                                                                                        '-score',
+                                                                                                        'name')
 
         return context
