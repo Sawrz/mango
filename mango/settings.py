@@ -35,6 +35,9 @@ DEBUG = env('DEBUG')
 MAINTENANCE = env('MAINTENANCE')
 LAUNCHED = env('LAUNCHED')
 
+# WARNING: Never change this parameter except you know what you're doing: Usage may result in data loss.
+TESTING = False
+
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = env('SECRET_KEY', default='unsafe-secret-key')
 ALLOWED_HOSTS = env('ALLOWED_HOSTS')
@@ -92,16 +95,24 @@ WSGI_APPLICATION = 'mango.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': env('DB_NAME'),
-        'USER': env('DB_USER'),
-        'PASSWORD': env('DB_PASSWORD'),
-        'HOST': env('DB_HOST', default='localhost'),
-        'PORT': env('DB_PORT', default=5432)
+if TESTING:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
     }
-}
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql_psycopg2',
+            'NAME': env('DB_NAME'),
+            'USER': env('DB_USER'),
+            'PASSWORD': env('DB_PASSWORD'),
+            'HOST': env('DB_HOST', default='localhost'),
+            'PORT': env('DB_PORT', default=5432)
+        }
+    }
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
@@ -171,7 +182,7 @@ EMAIL_PORT = env('EMAIL_PORT', default=25)
 EMAIL_USE_TLS = env('EMAIL_TLS', default=False)
 EMAIL_USE_SSL = env('EMAIL_SSL', default=False)
 
-#Bleach
+# Bleach
 # Which HTML tags are allowed
 BLEACH_ALLOWED_TAGS = ['p', 'b', 'i', 'u', 'em', 'strong', 'a', 'img',
                        'h1', 'h2', 'h3', 'h4', 'h5', 'h6',
@@ -193,4 +204,3 @@ BLEACH_STRIP_TAGS = True
 
 # Strip comments, or leave them in.
 BLEACH_STRIP_COMMENTS = False
-
