@@ -171,6 +171,7 @@ EMAIL_USE_SSL = env('EMAIL_SSL', default=False)
 # Which HTML tags are allowed
 BLEACH_ALLOWED_TAGS = ['p', 'b', 'i', 'u', 'em', 'strong', 'a', 'img',
                        'h1', 'h2', 'h3', 'h4', 'h5', 'h6',
+                       'ul', 'li',
                        'pre', 'code', 'span', 'div',
                        'table', 'thead', 'tbody', 'tr', 'th', 'td']
 

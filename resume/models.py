@@ -99,7 +99,7 @@ class Certificate(models.Model):
     date_received = models.DateField(blank=False, null=False)
     valid_until = models.DateField(blank=True, null=True)
 
-    description = models.CharField(max_length=512, blank=True, null=True)
+    description = models.TextField(max_length=512, blank=True, null=True)
     url = models.URLField(max_length=255, blank=True, null=True)
 
     is_active = models.BooleanField(default=True)

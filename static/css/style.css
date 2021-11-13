@@ -327,31 +327,15 @@ a, .btn {
 	padding-top: 18px;
 }
 
-.cardOptionCol > li {
-	display: inline-block;
-	vertical-align: middle;
-  position: relative;
+.certificate ul li {
+    padding: 2px 0px;
 }
-.cardOptionCol > li + li {
-  padding-left: 40px;
+
+.certificate-grid {
+    padding-top: 12px;
+    padding-bottom: 12px;
 }
-.cardOptionCol > li + li::before {
-  content: "|";
-  position: absolute;
-  left: 16px;
-}
-.cardOptionCol {
-	padding: 5px 0 10px;
-}
-.cardStyle1 {
-	padding: 25px;
-	background-color: var(--bs-white);
-	border-radius: 4px;
-  height: 100%;
-}
-.cardStyle1 > p:last-child {
-	margin-bottom: 0;
-}
+
 .cs1Title {
   min-height: 90px;
 }
@@ -587,10 +571,10 @@ body.navToggleActive {
   .smTitle {
   	font-size: 18px;
   }
-  .keySkillCard + .keySkillCard {
+  .softSkillCard + .softSkillCard {
   	padding-top: 20px;
   }
-  .keySkillCol {
+  .softSkillCol {
   	width: 250px;
   }
   .cs1Title {

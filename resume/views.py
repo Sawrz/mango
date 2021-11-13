@@ -38,3 +38,10 @@ class TechnicalSkillView(generic.DetailView):
                                                                                                         'name')
 
         return context
+
+
+class CertificatesView(generic.ListView):
+    model = Certificate
+    template_name = 'resume/certificates_index.html'
+    context_object_name = 'certificates'
+    queryset = Certificate.objects.filter(is_active=True).order_by('-date_received')

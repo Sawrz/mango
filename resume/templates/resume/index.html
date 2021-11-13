@@ -93,7 +93,29 @@ Start Content
     <section>
         <div class="sectionSpaceSm lightBg">
             <div class="container">
-                {% include 'resume/partials/certificates.html' %}
+                <div class="row pb-3">
+                    <div class="col">
+                        <h4 class="smText regular">Certificates</h4>
+                    </div>
+                    <div class="col-auto">
+                        <a href="{% url 'resume:certificates' %}" class="simpleLink">View all</a>
+                    </div>
+                </div>
+                <div class="sliderOuter">
+                    <div class="swiper certificatesSlider">
+                        <div class="swiper-wrapper">
+                            {% for c in certificates %}
+                                <div class="swiper-slide">
+                                    {% include 'resume/partials/certificate_card.html' %}
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div class="cert-swiper-button-next swiper-button-next swiperBtnStyle"></div>
+                    <div class="cert-swiper-button-prev swiper-button-prev swiperBtnStyle"></div>
+                    <div class="swiper-pagination swiperPaginationStyle posInitial"></div>
+                </div>
+
             </div>
         </div>
     </section>
