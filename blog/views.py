@@ -4,12 +4,18 @@ from django.http import Http404
 
 
 # Create your views here.
+
 class PostListView(generic.ListView):
     model = Post
     template_name = 'blog/index.html'
-    context_object_name = 'posts'
     paginate_by = 4
-    queryset = Post.released_objects.all()
+
+    def get_context_data(self, **kwargs):
+        context = super(PostListView, self).get_context_data(**kwargs)
+
+        context['posts'] = self.model.released_objects.all()
+
+        return context
 
 
 class PostDetailView(generic.DetailView):
