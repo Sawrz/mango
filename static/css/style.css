@@ -2,10 +2,10 @@
 /* font-family: 'Courier Prime', monospace;
 font-family: 'Heebo', sans-serif; */
 :root {
-  --primaryColor: #9C07B6;
-  --primaryDarkColor: #3D0048;
-  --primaryHoverColor: #900AA8;
-  --secondaryColor: #F9B000;
+  --primaryColor: #07a4f8;
+  --primaryDarkColor: #0046a6;
+  --primaryHoverColor: #86c9fa;
+  --secondaryColor: #F85B07;
   --baseColor: #21243D;
   --baseFont: 'Heebo', sans-serif;
   --titleFont: 'Courier Prime', monospace;
