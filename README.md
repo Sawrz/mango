@@ -2,7 +2,7 @@
 
 Mango uses PostgreSQL for the database backend. Therefore, follow these instructions carefully.
 
-Install PostgreSQL and the following dependencies: 
+Install PostgreSQL and the following dependencies:
 
 ```bash
 sudo apt-get install postgresql postgresql-contrib
@@ -15,7 +15,7 @@ Enable `postresql.service`:
 sudo systemctl enable --now postgresql.service
 ```
 
-Use the PostgreSQL superuser 
+Use the PostgreSQL superuser
 
 ```bash
 sudo -u postgres psql
@@ -34,7 +34,7 @@ GRANT ALL PRIVILEGES ON DATABASE MANGO_DB TO MANGO_USER;
 
 Replace `MANGO_DB`, `MANGO_USER`, and `MANGO_USER_PASSWORD` with the values you prefer.
 
-Exit PostreSQL with `\q`, and copy `mango/example.env` to `mango/.env`
+Exit PostgreSQL with `\q`, and copy `mango/example.env` to `mango/.env`
 
 ```bash
 cp mango/example.env mango/.env
@@ -46,11 +46,16 @@ and set the following mandatory values:
 - `DB_NAME`: The value you set instead of `MANGO_DB`
 - `DB_USER`: The value you set instead of `MANGO_USER`
 - `DB_PASSWORD`: The value you set instead of `MANGO_USER_PASSWORD`
+- `ALLOWED_HOSTS`: The domain for your site
+- `DEBUG`: Should be `False` in production environments.
 
 In addition, you can set your Email credentials, so you get an Email if somebody uses the contacts page.
 
-Finally, install Mangos dependencies, make the DB migrations and copy the static files:
+Install Mangos dependencies, make the DB migrations and copy the static files:
 
 ```bash
 make deploy
 ```
+
+Finally, start the site, e.g., `python3 manage.py runserver`, and navigate to `<URL>/admin`. Log in with your
+credentials, navigate to `Users`, and select your username. Fill in your credentials and hit save. 
