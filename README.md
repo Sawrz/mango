@@ -59,3 +59,9 @@ make deploy
 
 Finally, start the site, e.g., `python3 manage.py runserver`, and navigate to `<URL>/admin`. Log in with your
 credentials, navigate to `Users`, and select your username. Fill in your credentials and hit save. 
+
+# Resources
+
+- [Using PostgreSQL with Django](https://djangocentral.com/using-postgresql-with-django/)
+- [How To Deploy Django App with Nginx, Gunicorn, PostgreSQL and Let’s Encrypt SSL on Ubuntu](https://djangocentral.com/deploy-django-with-nginx-gunicorn-postgresql-and-lets-encrypt-ssl-on-ubuntu/)
+- [Using Environment Variables In Django](https://djangocentral.com/environment-variables-in-django/)
