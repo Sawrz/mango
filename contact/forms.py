@@ -3,6 +3,10 @@ from .models import ContactProfile
 
 
 class ContactForm(forms.ModelForm):
+    class Meta:
+        model = ContactProfile
+        fields = ('name', 'email', 'message')
+
     name = forms.CharField(max_length=255, required=True, widget=forms.TextInput(attrs={
         'placeholder': 'Full Name',
     }))
@@ -16,6 +20,4 @@ class ContactForm(forms.ModelForm):
         'rows': 6,
     }))
 
-    class Meta:
-        model = ContactProfile
-        fields = ('name', 'email', 'message')
+
