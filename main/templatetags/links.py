@@ -52,8 +52,8 @@ def locate_url(app_name, slug, view_name):
 
 
 def validate_slug_exists(slug, model):
-    return len(model.objects.filter(slug=slug)) > 0
+    return model.objects.filter(slug=slug).count() > 0
 
 
 def validate_slug_published(slug, model):
-    return len(model.released_objects.filter(slug=slug)) > 0
+    return model.released_objects.filter(slug=slug).count() > 0
