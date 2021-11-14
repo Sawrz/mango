@@ -22,11 +22,14 @@ clean: ## cleans migrations and static files folder
 	$(call clean_up)
 	rm db.sqlite3
 
-update: ## action after updating mango to make sure everything work as expected
+simple_update: ## action after updating mango to make sure everything work as expected
 	pip install -r requirements.txt
 	$(call make_migrations)
 	python3 manage.py collectstatic --noinput
 
-deploy: update ## install all dependencies of mango
+update: simple_update ## action after updating mango to make sure everything work as expected if using gunicorn
+	systemctl restart gunicorn.service
+
+deploy: simple_update ## install all dependencies of mango
 	python3 manage.py createsuperuser
 	python3 manage.py check --deploy
