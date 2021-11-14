@@ -18,20 +18,34 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 
-urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('', include('resume.urls', namespace='resume')),
-    path('contact/', include('contact.urls', namespace='contact')),
-    path('portfolio/', include('portfolio.urls', namespace='portfolio')),
-    path('blog/', include('blog.urls', namespace='blog')),
-]
+urlpatterns = []
+
+if settings.MAINTENANCE or settings.DEBUG:
+    patterns = [
+        path('admin/', admin.site.urls),
+    ]
+
+    urlpatterns.extend(patterns)
 
 if settings.MAINTENANCE:
-    urlpatterns = [
-        path('admin/', admin.site.urls),
-        path('', include('main.urls', namespace='main'))
+    patterns = [
+        path('', include('main.urls', namespace='main')),
     ]
+
+    urlpatterns.extend(patterns)
 
 if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+if not settings.MAINTENANCE:
+    patterns = [
+        path('', include('resume.urls', namespace='resume')),
+        path('login', CreatorLoginView.as_view(), name='login'),
+        path('logout', CreatorLogoutView.as_view(), name='logout'),
+        path('contact/', include('contact.urls', namespace='contact')),
+        path('portfolio/', include('portfolio.urls', namespace='portfolio')),
+        path('blog/', include('blog.urls', namespace='blog')),
+    ]
+
+    urlpatterns.extend(patterns)
