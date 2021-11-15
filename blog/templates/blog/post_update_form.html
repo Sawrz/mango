@@ -1,0 +1,46 @@
+{% extends 'main/base.html' %}
+{% load static %}
+{% load links %}
+{% load markdown_extras %}
+{% load bleach_tags %}
+
+<!-- ================================
+Start SEO blocks
+================================= -->
+{% block title %}Lazy Data Scientist - {{ object.title }}{% endblock %}
+{% block description %}{{ object.meta_description }}{% endblock %}
+{% block keywords %}{% endblock %}
+<!-- ================================
+End SEO blocks
+================================= -->
+
+<!-- ================================
+Start CSS
+================================= -->
+{% block extend_header %}
+    <link href="{% static 'css/syntax.css' %}" rel="stylesheet">
+    <link href="{% static 'css/post.css' %}" rel="stylesheet">
+{% endblock %}
+<!-- ================================
+End CSS
+================================= -->
+
+<!-- ================================
+Start Content
+================================= -->
+{% block content %}
+    <section>
+        <div class="innerPageBannerCol">
+            <div class="container">
+                <form method="post">{% csrf_token %}
+                    {{ form.as_p }}
+                    <input type="submit" value="Update">
+                </form>
+
+            </div>
+        </div>
+    </section>
+{% endblock %}
+<!-- ================================
+End Content
+================================= -->

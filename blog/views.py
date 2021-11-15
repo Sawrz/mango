@@ -1,7 +1,9 @@
 from django.views import generic
 from .models import Post
-from django.core.paginator import Paginator
+from main.views import CreateLoginRequired
 from django.http import Http404
+from django.urls import reverse_lazy
+from django.utils.text import slugify
 
 
 # Create your views here.
@@ -35,3 +37,29 @@ class PostDetailView(generic.DetailView):
             return super(PostDetailView, self).get(request, *args, **kwargs)
         else:
             raise Http404
+
+
+class PostCreateView(CreateLoginRequired, generic.CreateView):
+    model = Post
+    fields = ['title', 'subtitle', 'body', 'description', 'meta_description',
+              'thumbnail', 'publish_date', 'published', 'author']
+    template_name = 'blog/post_update_form.html'
+
+    def get_success_url(self):
+        return reverse_lazy('blog:posts')
+
+    def form_valid(self, form):
+        post = form.save(commit=False)
+        post.slug = slugify(f'{post.title} {post.subtitle}')
+        post.save()
+
+        return super(PostCreateView, self).form_valid(form)
+
+
+class PostUpdateView(CreateLoginRequired, generic.UpdateView):
+    model = Post
+    fields = ['title', 'body', ]
+    template_name = 'blog/post_update_form.html'
+
+    def get_success_url(self):
+        return reverse_lazy('blog:posts')

@@ -58,6 +58,11 @@ class CertificatesView(generic.ListView):
     queryset = Certificate.objects.filter(is_active=True).order_by('-date_received')
 
 
+class CreateLoginRequired(LoginRequiredMixin):
+    login_url = reverse_lazy('login')
+    redirect_field_name = 'login'
+
+
 class CreatorLoginView(LoginView):
     template_name = 'registration/login.html'
     redirect_authenticated_user = True
@@ -70,18 +75,7 @@ class CreatorLogoutView(LogoutView):
     template_name = 'registration/logout.html'
 
 
-class CreateLoginRequired(LoginRequiredMixin):
-    login_url = reverse_lazy('login')
-    redirect_field_name = 'login'
-
-
 class DashboardView(CreateLoginRequired, generic.TemplateView):
-    template_name = 'create/dashboard.html'
+    template_name = 'creator/dashboard.html'
 
 
-class PostCreateView(CreateLoginRequired, generic.CreateView):
-    model = Post
-
-
-class PostEditView(CreateLoginRequired, generic.UpdateView):
-    model = Post
