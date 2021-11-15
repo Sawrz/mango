@@ -1,11 +1,14 @@
 from django.contrib import admin
-from .models import Profile, SocialMediaProfile, Media
+from .models import Profile, SocialMediaProfile, Media, Profile, Testimonial, Certificate, SoftSkill, TechnicalSkill, \
+    TechnicalSubskill
 
 
 # Register your models here.
 @admin.register(Profile)
 class UserProfileAdmin(admin.ModelAdmin):
-    list_display = ('id', 'user')
+    list_display = ('id',
+                    'user',
+                    'job_title')
 
 
 @admin.register(SocialMediaProfile)
@@ -16,3 +19,87 @@ class SocialMediaProfileAdmin(admin.ModelAdmin):
 @admin.register(Media)
 class MediaAdmin(admin.ModelAdmin):
     list_display = ('id', 'name')
+
+
+# Register your models here.
+@admin.register(TechnicalSkill)
+class TechnicalSkillAdmin(admin.ModelAdmin):
+    list_display = ('id',
+                    'name',
+                    'score',
+                    'is_active',
+                    )
+    list_filter = ('is_active',
+                   )
+    list_editable = ('is_active',
+                     )
+    search_fields = ('name',
+                     )
+    prepopulated_fields = {
+        "slug": (
+            "name",
+        )
+    }
+
+
+@admin.register(TechnicalSubskill)
+class TechnicalSubSkillAdmin(admin.ModelAdmin):
+    list_display = ('id',
+                    'name',
+                    'weight',
+                    'score',
+                    )
+    list_filter = ('technical_skill',
+                   'weight',
+                   )
+    list_editable = ('weight',
+                     'score',
+                     )
+    search_fields = ('name',
+                     )
+
+
+@admin.register(SoftSkill)
+class SoftSkillAdmin(admin.ModelAdmin):
+    list_display = ('id',
+                    'name',
+                    'is_active')
+    list_filter = ('is_active',
+                   )
+    list_editable = ('is_active',
+                     )
+    search_fields = ('name',
+                     )
+
+
+@admin.register(Testimonial)
+class TestimonialAdmin(admin.ModelAdmin):
+    list_display = ('id', 'first_name',
+                    'last_name',
+                    'is_active',
+                    )
+    list_filter = ('is_active',
+                   )
+    list_editable = ('is_active',
+                     )
+    search_fields = ('first_name',
+                     'last_name',
+                     'role',
+                     )
+
+
+@admin.register(Certificate)
+class CertificateAdmin(admin.ModelAdmin):
+    list_display = ('id',
+                    'title',
+                    'institution',
+                    'date_received',
+                    'is_active')
+    list_filter = ('is_active',
+                   )
+    list_editable = ('is_active',
+                     )
+    search_fields = ('title',
+                     'institution',
+                     'is_active',
+                     )

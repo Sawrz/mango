@@ -1,4 +1,4 @@
-modules=main blog contact portfolio resume
+modules=main blog contact portfolio
 
 define make_migrations
 	for path in $(modules); do \

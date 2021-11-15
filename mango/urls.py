@@ -28,20 +28,13 @@ if settings.MAINTENANCE or settings.DEBUG:
 
     urlpatterns.extend(patterns)
 
-if settings.MAINTENANCE:
-    patterns = [
-        path('', include('main.urls', namespace='main')),
-    ]
-
-    urlpatterns.extend(patterns)
-
 if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 if not settings.MAINTENANCE:
     patterns = [
-        path('', include('resume.urls', namespace='resume')),
+        path('', include('main.urls', namespace='main')),
         path('login', CreatorLoginView.as_view(), name='login'),
         path('logout', CreatorLogoutView.as_view(), name='logout'),
         path('contact/', include('contact.urls', namespace='contact')),

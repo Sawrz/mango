@@ -2,12 +2,10 @@
 /blog/migrations/
 /contact/migrations/
 /portfolio/migrations/
-/resume/migrations/
 /main/__pycache__/
 /blog/__pycache__/
 /contact/__pycache__/
 /portfolio/__pycache__/
-/resume/__pycache__/
 /.idea/
 /staticfiles/
 /mediafiles/

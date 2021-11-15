@@ -47,3 +47,30 @@ var swiper = new Swiper(".certificatesSlider", {
     },
   },
 });
+
+var swiper = new Swiper(".postsSlider", {
+  slidesPerView: 1,
+  spaceBetween: 16,
+  pagination: {
+    el: ".swiper-pagination",
+    clickable: true,
+  },
+  navigation: {
+    nextEl: ".post-swiper-button-next",
+    prevEl: ".post-swiper-button-prev",
+  },
+  breakpoints: {
+    640: {
+      slidesPerView: 2,
+      spaceBetween: 16,
+    },
+    768: {
+      slidesPerView: 2,
+      spaceBetween: 16,
+    },
+    1024: {
+      slidesPerView: 2,
+      spaceBetween: 16,
+    },
+  },
+});

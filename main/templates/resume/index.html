@@ -43,12 +43,12 @@ Start Content
                     <div class="col-md">
                         <div class="bannerContent">
                             <h1 class="xlTitle pb-3">Hi, I’m {{ me.first_name|title }}, <br>
-                                a {{ me.profile.profile.job_title }}</h1>
+                                a {{ me.profile.job_title }}</h1>
                             <p>{{ me.profile.bio }}</p>
                             <div class="bannerBtnCol">
                                 <div class="row">
                                     <div class="col-auto">
-                                        <a download href="{{ me.profile.profile.cv.url }}" class="btn btnPrimary">Download
+                                        <a download href="{{ me.profile.cv.url }}" class="btn btnPrimary">Download
                                             CV</a>
                                     </div>
                                     <div class="col-auto">
@@ -70,7 +70,7 @@ Start Content
                     <div class="col-md-auto">
                         <div class="softSkillCol">
                             <h4 class="smTitle pb-3">Soft Skills</h4>
-                            {% for sk in me.profile.profile.soft_skills.all %}
+                            {% for sk in me.profile.soft_skills.all %}
                                 {% include 'resume/partials/soft_skill.html' %}
                             {% endfor %}
                         </div>
@@ -79,7 +79,7 @@ Start Content
                         <h4 class="smTitle pb-3">Technical Skills</h4>
                         <div class="progressCol">
                             <div class="progressCard">
-                                {% for sk in me.profile.profile.technical_skills.all %}
+                                {% for sk in me.profile.technical_skills.all %}
                                     {% include 'resume/partials/technical_skill.html' %}
                                 {% endfor %}
                             </div>
@@ -98,7 +98,7 @@ Start Content
                         <h4 class="smText regular">Certificates</h4>
                     </div>
                     <div class="col-auto">
-                        <a href="{% url 'resume:certificates' %}" class="simpleLink">View all</a>
+                        <a href="{% url 'main:certificates' %}" class="simpleLink">View all</a>
                     </div>
                 </div>
                 <div class="sliderOuter">
@@ -141,7 +141,7 @@ Start Content
                     </div>
                 </div>
                 <div class="sliderOuter">
-                    <div class="swiper certificatesSlider">
+                    <div class="swiper postsSlider">
                         <div class="swiper-wrapper">
                             {% for p in posts %}
                                 <div class="swiper-slide">
@@ -150,8 +150,8 @@ Start Content
                             {% endfor %}
                         </div>
                     </div>
-                    <div class="cert-swiper-button-next swiper-button-next swiperBtnStyle"></div>
-                    <div class="cert-swiper-button-prev swiper-button-prev swiperBtnStyle"></div>
+                    <div class="post-swiper-button-next swiper-button-next swiperBtnStyle"></div>
+                    <div class="post-swiper-button-prev swiper-button-prev swiperBtnStyle"></div>
                     <div class="swiper-pagination swiperPaginationStyle posInitial"></div>
                 </div>
             </div>

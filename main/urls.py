@@ -4,12 +4,17 @@ from . import views
 
 app_name = 'main'
 
-if settings.LAUNCHED:
-    indexView = views.MaintenanceView
+if settings.MAINTENANCE:
+    if settings.LAUNCHED:
+        indexView = views.MaintenanceView
+    else:
+        indexView = views.SoonView
 else:
-    indexView = views.SoonView
+    indexView = views.ResumeView
 
 urlpatterns = [
     path('', indexView.as_view(), name='home'),
-    path('', views.DashboardView.as_view(), name='dashboard'),
+    path('creator', views.DashboardView.as_view(), name='dashboard'),
+    path('technical-skills/<slug:slug>', views.TechnicalSkillView.as_view(), name='technical_skill'),
+    path('certificates', views.CertificatesView.as_view(), name='certificates'),
 ]
