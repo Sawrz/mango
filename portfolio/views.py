@@ -10,13 +10,15 @@ class ProjectsListView(generic.ListView):
     template_name = 'portfolio/index.html'
 
     def get_queryset(self):
-        return super(ProjectsListView, self).get_queryset().filter(published=True)
+        return self.model.released_objects.all()
 
     def get_context_data(self, **kwargs):
         context = super(ProjectsListView, self).get_context_data(**kwargs)
 
-        context['data_analyses'] = Project.released_objects.filter(category='data analysis')
-        context['software_projects'] = Project.released_objects.filter(category='software project')
+        projects = self.get_queryset()
+
+        context['data_analyses'] = projects.filter(category='data analysis')
+        context['software_projects'] = projects.filter(category='software project')
 
         return context
 
