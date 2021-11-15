@@ -11,4 +11,5 @@ else:
 
 urlpatterns = [
     path('', indexView.as_view(), name='home'),
+    path('', views.DashboardView.as_view(), name='dashboard'),
 ]
