@@ -14,6 +14,8 @@ else:
 
 urlpatterns = [
     path('', indexView.as_view(), name='home'),
+    path('login', views.CreatorLoginView.as_view(), name='login'),
+    path('logout', views.CreatorLogoutView.as_view(), name='logout'),
     path('creator', views.DashboardView.as_view(), name='dashboard'),
     path('technical-skills/<slug:slug>', views.TechnicalSkillView.as_view(), name='technical_skill'),
     path('certificates', views.CertificatesView.as_view(), name='certificates'),

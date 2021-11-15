@@ -63,7 +63,7 @@ class CreatorLoginView(LoginView):
     redirect_authenticated_user = True
 
     def get_success_url(self):
-        return reverse_lazy('create:dashboard')
+        return reverse_lazy('main:dashboard')
 
 
 class CreatorLogoutView(LogoutView):
