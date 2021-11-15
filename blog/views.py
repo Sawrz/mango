@@ -1,5 +1,6 @@
 from django.views import generic
 from .models import Post
+from django.core.paginator import Paginator
 from django.http import Http404
 
 
@@ -9,11 +10,16 @@ class PostListView(generic.ListView):
     model = Post
     template_name = 'blog/index.html'
     paginate_by = 4
+    context_object_name = 'posts'
+
+    def get_queryset(self):
+        return self.model.released_objects.all()
 
     def get_context_data(self, **kwargs):
         context = super(PostListView, self).get_context_data(**kwargs)
 
-        context['posts'] = self.model.released_objects.all()
+        posts = self.get_queryset()
+        context['paginate_posts'] = posts.count() > self.paginate_by
 
         return context
 

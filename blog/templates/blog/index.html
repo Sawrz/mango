@@ -52,7 +52,9 @@ Start Content
                     {% include 'blog/partials/post_card_horizontal.html' %}
                 {% endfor %}
             </div>
-            {% include 'main/partials/pagination.html' %}
+            {% if paginate_posts %}
+                {% include 'main/partials/pagination.html' %}
+            {% endif %}
         </div>
     </section>
 {% endblock %}
