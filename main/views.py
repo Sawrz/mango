@@ -56,3 +56,26 @@ class CertificatesView(generic.ListView):
     template_name = 'resume/certificates_index.html'
     context_object_name = 'certificates'
     queryset = Certificate.objects.filter(is_active=True).order_by('-date_received')
+
+
+class CreateLoginRequired(LoginRequiredMixin):
+    login_url = reverse_lazy('login')
+    redirect_field_name = 'login'
+
+
+class CreatorLoginView(LoginView):
+    template_name = 'registration/login.html'
+    redirect_authenticated_user = True
+
+    def get_success_url(self):
+        return reverse_lazy('main:dashboard')
+
+
+class CreatorLogoutView(LogoutView):
+    template_name = 'registration/logout.html'
+
+
+class DashboardView(CreateLoginRequired, generic.TemplateView):
+    template_name = 'creator/dashboard.html'
+
+
