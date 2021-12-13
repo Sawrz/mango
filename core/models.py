@@ -116,7 +116,7 @@ class Testimonial(models.Model):
 
     quote = models.CharField(max_length=512, blank=True, null=False)
 
-    date_added = models.DateField(auto_now=True)
+    date_added = models.DateField(auto_now_add=True)
     is_active = models.BooleanField(default=True)
 
     def __str__(self):

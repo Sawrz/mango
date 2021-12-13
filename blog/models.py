@@ -66,7 +66,7 @@ class Post(models.Model):
     thumbnail = models.ImageField(blank=True, null=True, upload_to='blog/thumbnails')
     banner = models.ImageField(blank=True, null=True, upload_to='blog/banners')
 
-    date_created = models.DateTimeField(auto_now=True)
+    date_created = models.DateTimeField(auto_now_add=True)
     date_modified = models.DateTimeField(auto_now=True)
     publish_date = models.DateTimeField(blank=True, null=True)
     published = models.BooleanField(default=False)
