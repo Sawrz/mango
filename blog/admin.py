@@ -3,7 +3,7 @@ from .models import Post, Category, SubCategory, Tag
 
 
 # Register your models here.
-@admin.register(Tag)
+# @admin.register(Tag)
 class TagAdmin(admin.ModelAdmin):
     list_display = ('id',
                     'name')
@@ -13,7 +13,7 @@ class TagAdmin(admin.ModelAdmin):
     )
 
 
-@admin.register(Category)
+# @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
     list_display = ('id',
                     'name')
@@ -23,7 +23,7 @@ class CategoryAdmin(admin.ModelAdmin):
     )
 
 
-@admin.register(SubCategory)
+# @admin.register(SubCategory)
 class SubCategoryAdmin(admin.ModelAdmin):
     list_display = ('id',
                     'name',
@@ -43,15 +43,14 @@ class PostAdmin(admin.ModelAdmin):
                     'title',
                     'subtitle',
                     'publish_date',
-                    'published',
                     'slug',
+                    'published',
                     )
     list_filter = ('published',
                    'publish_date',
                    )
     list_editable = (
         'publish_date',
-        'published',
     )
     search_fields = (
         'title',
@@ -59,11 +58,24 @@ class PostAdmin(admin.ModelAdmin):
         'slug',
         'body',
     )
-    prepopulated_fields = {
-        "slug": (
-            "title",
-            "subtitle",
-        )
-    }
+
+    fieldsets = (
+        (None, {
+            'classes': ('wide', 'extrapretty',),
+            'fields': ('title', 'subtitle', 'body', 'featured_image',)
+        }),
+        ('Status & Visibility', {
+            'classes': ('collapse', 'extrapretty',),
+            'fields': ('publish_date', 'visibility', 'author',)
+        }),
+        ('Presentation & SEO', {
+            'classes': ('collapse', 'extrapretty',),
+            'fields': ('description', 'meta_description', 'thumbnail',)
+        }),
+        ('Content Organization', {
+            'classes': ('collapse', 'extrapretty',),
+            'fields': ('category', 'tags',)
+        }),
+    )
 
     date_hierarchy = "publish_date"
