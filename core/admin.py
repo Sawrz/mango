@@ -9,7 +9,7 @@ from .models import Profile, SocialMediaProfile, Media, Testimonial, Certificate
 admin.site.site_header = 'Mango Admin'
 
 # Unregister models
-if not settings.MAINTENANCE or settings.DEBUG:
+if not settings.MAINTENANCE:
     admin.site.unregister(Group)
     admin.site.unregister(User)
 
