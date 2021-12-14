@@ -2,7 +2,7 @@ from django.urls import path
 from django.conf import settings
 from . import views
 
-app_name = 'main'
+app_name = 'core'
 
 if settings.MAINTENANCE:
     if settings.LAUNCHED:

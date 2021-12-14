@@ -1,4 +1,4 @@
-modules=main blog contact portfolio
+modules=core blog contact portfolio
 
 define make_migrations
 	for path in $(modules); do \
@@ -20,6 +20,8 @@ migrate: ## migrate databases
 
 clean: ## cleans migrations and static files folder
 	$(call clean_up)
+
+flush: clean ## removes migrations and static files folders in addition to delete the SQLite DB
 	rm db.sqlite3
 
 simple_update: ## action after updating mango to make sure everything work as expected

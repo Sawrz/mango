@@ -1,8 +1,8 @@
-/main/migrations/
+/core/migrations/
 /blog/migrations/
 /contact/migrations/
 /portfolio/migrations/
-/main/__pycache__/
+/core/__pycache__/
 /blog/__pycache__/
 /contact/__pycache__/
 /portfolio/__pycache__/

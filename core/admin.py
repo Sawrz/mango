@@ -1,6 +1,17 @@
 from django.contrib import admin
-from .models import Profile, SocialMediaProfile, Media, Profile, Testimonial, Certificate, SoftSkill, TechnicalSkill, \
+from django.contrib.auth.models import User, Group
+from django.conf import settings
+from .models import Profile, SocialMediaProfile, Media, Testimonial, Certificate, SoftSkill, TechnicalSkill, \
     TechnicalSubskill
+
+
+# Set Title
+admin.site.site_header = 'Mango Admin'
+
+# Unregister models
+if not settings.MAINTENANCE or settings.DEBUG:
+    admin.site.unregister(Group)
+    admin.site.unregister(User)
 
 
 # Register your models here.
