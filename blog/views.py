@@ -1,8 +1,6 @@
 from django.views import generic
 from .models import Post
 from django.http import Http404
-from django.urls import reverse_lazy
-from django.utils.text import slugify
 
 
 # Create your views here.
@@ -32,7 +30,7 @@ class PostDetailView(generic.DetailView):
     def get(self, request, *args, **kwargs):
         post = self.get_object()
 
-        if post.published and post.released():
+        if post.check_released():
             return super(PostDetailView, self).get(request, *args, **kwargs)
         else:
             raise Http404
