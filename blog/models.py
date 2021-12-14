@@ -73,7 +73,7 @@ class Post(models.Model):
 
     # Status & Visibility
     publish_date = models.DateTimeField(blank=True, null=True)
-    author = models.ForeignKey(Profile, on_delete=models.PROTECT)
+    author = models.ForeignKey(Profile, on_delete=models.PROTECT, blank=True)
 
     PUBLIC = 'public'
     PRIVATE = 'private'

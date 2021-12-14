@@ -79,3 +79,9 @@ class PostAdmin(admin.ModelAdmin):
     )
 
     date_hierarchy = "publish_date"
+    
+    def save_model(self, request, obj, form, change):
+        if obj.author_id is None:
+            obj.author_id = request.user.id
+            
+        super(PostAdmin, self).save_model(request, obj, form, change)
