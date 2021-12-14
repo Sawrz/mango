@@ -97,7 +97,10 @@ class Post(models.Model):
     released_objects = PostReleaseManager()
 
     def __str__(self):
-        return f'{self.title}-{self.subtitle}'
+        if self.subtitle is not None:
+            return f'{self.title}-{self.subtitle}'
+        else:
+            return self.title
 
     def check_release_date(self):
         return datetime.now(tz=pytz.UTC) >= self.publish_date.replace(tzinfo=pytz.UTC)
