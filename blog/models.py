@@ -56,7 +56,7 @@ class Post(models.Model):
     class Meta:
         verbose_name = 'Post'
         verbose_name_plural = 'Posts'
-        ordering = ['-publish_date']
+        ordering = ('-publish_date', 'title', 'subtitle')
         unique_together = ('title', 'subtitle')
 
     # Post Essentials
@@ -97,8 +97,8 @@ class Post(models.Model):
     released_objects = PostReleaseManager()
 
     def __str__(self):
-        if self.subtitle is not None:
-            return f'{self.title}-{self.subtitle}'
+        if len(self.subtitle) > 0:
+            return f'{self.title} - {self.subtitle}'
         else:
             return self.title
 
