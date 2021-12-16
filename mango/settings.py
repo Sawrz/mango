@@ -36,7 +36,7 @@ MAINTENANCE = env('MAINTENANCE')
 LAUNCHED = env('LAUNCHED')
 
 # WARNING: Never change this parameter except you know what you're doing: Usage may result in data loss.
-TESTING = False
+TESTING = env('TESTING', default=False)
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = env('SECRET_KEY', default='unsafe-secret-key')
