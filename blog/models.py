@@ -103,7 +103,10 @@ class Post(models.Model):
             return self.title
 
     def check_release_date(self):
-        return datetime.now(tz=pytz.UTC) >= self.publish_date.replace(tzinfo=pytz.UTC)
+        if self.publish_date is None:
+            return False
+        else:
+            return datetime.now(tz=pytz.UTC) >= self.publish_date.replace(tzinfo=pytz.UTC)
 
     def check_released(self):
         return self.check_release_date() and self.published

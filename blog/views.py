@@ -1,6 +1,7 @@
 from django.views import generic
 from .models import Post
 from django.http import Http404
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 # Create your views here.
@@ -34,3 +35,8 @@ class PostDetailView(generic.DetailView):
             return super(PostDetailView, self).get(request, *args, **kwargs)
         else:
             raise Http404
+
+
+class PostDetailPreview(LoginRequiredMixin, generic.DetailView):
+    model = Post
+    template_name = 'blog/post.html'

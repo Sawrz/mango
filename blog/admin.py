@@ -1,4 +1,7 @@
 from django.contrib import admin
+from django.urls import reverse
+from django.utils.html import format_html
+
 from .models import Post, Category, SubCategory, Tag
 
 
@@ -39,11 +42,9 @@ class SubCategoryAdmin(admin.ModelAdmin):
 
 @admin.register(Post)
 class PostAdmin(admin.ModelAdmin):
-    list_display = ('id',
-                    'title',
-                    'subtitle',
+    list_display = ('__str__',
                     'publish_date',
-                    'slug',
+                    'get_slug',
                     'published',
                     )
     list_filter = ('published',
@@ -79,9 +80,16 @@ class PostAdmin(admin.ModelAdmin):
     )
 
     date_hierarchy = "publish_date"
-    
+
+    def get_slug(self, obj):
+        url = reverse(f'blog:post_preview', kwargs={'slug': obj.slug})
+
+        return format_html(f'<a href="{url}">{obj.slug}</a>')
+
+    get_slug.short_description = 'slug'
+
     def save_model(self, request, obj, form, change):
         if obj.author_id is None:
             obj.author_id = request.user.id
-            
+
         super(PostAdmin, self).save_model(request, obj, form, change)
