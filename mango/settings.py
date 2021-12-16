@@ -168,8 +168,8 @@ else:
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Site Security
-SESSION_COOKIE_SECURE = True
-CSRF_COOKIE_SECURE = True
+SESSION_COOKIE_SECURE = env('SESSION_COOKIE_SECURE', default=True)
+CSRF_COOKIE_SECURE = env('CSRF_COOKIE_SECURE', default=True)
 
 # Contact
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
