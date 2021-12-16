@@ -106,7 +106,7 @@ class Post(models.Model):
         return datetime.now(tz=pytz.UTC) >= self.publish_date.replace(tzinfo=pytz.UTC)
 
     def check_released(self):
-        return self.check_release_date() and not self.published
+        return self.check_release_date() and self.published
 
     def save(self, *args, **kwargs):
         if not self.id:
