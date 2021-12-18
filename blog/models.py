@@ -3,6 +3,7 @@ from django.template.defaultfilters import slugify
 from core.models import Profile
 from datetime import datetime
 import pytz
+import re
 
 
 # Create your models here.
@@ -67,7 +68,8 @@ class Post(models.Model):
     body = models.TextField(blank=True, null=True)
 
     # Presentation & SEO
-    description = models.TextField(max_length=250, blank=True, null=True)
+    max_desc_length = 250
+    description = models.TextField(max_length=max_desc_length, blank=True, null=True)
     meta_description = models.CharField(max_length=150, blank=True)
     thumbnail = models.ImageField(blank=True, null=True, upload_to='blog/thumbnails')
 
@@ -119,5 +121,16 @@ class Post(models.Model):
             self.published = True
         else:
             self.published = False
+
+        if not self.description:
+            pattern = r'\w+[\.\!\?]+'
+            sent_endings = list(re.finditer(pattern, self.body[:self.max_desc_length]))
+
+            if len(sent_endings) > 0:
+                index = sent_endings[-1].span()[-1]
+            else:
+                index = self.max_desc_length
+
+            self.description = self.body[:index]
 
         super(Post, self).save(*args, **kwargs)
