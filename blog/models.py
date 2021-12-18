@@ -1,5 +1,6 @@
 from django.db import models
 from django.template.defaultfilters import slugify
+from easy_thumbnails.fields import ThumbnailerImageField
 from core.models import Profile
 from datetime import datetime
 import pytz
@@ -63,7 +64,8 @@ class Post(models.Model):
     # Post Essentials
     title = models.CharField(max_length=255)
     subtitle = models.CharField(max_length=255, blank=True)
-    featured_image = models.ImageField(blank=True, null=True, upload_to='blog/featured_images')
+    featured_image = ThumbnailerImageField(blank=True, null=True, upload_to='blog/featured_images',
+                                           resize_source={'size': (865, 600)})
     slug = models.SlugField(max_length=255, unique=True, null=False, blank=True)
     body = models.TextField(blank=True, null=True)
 

@@ -4,9 +4,7 @@
 <div class="card mb-3">
     <div class="row g-0">
         <div class="col-md-5">
-            <a href="{% url 'blog:post' slug=p.slug %}">
-                <img src="{{ p.thumbnail.url }}" class="card-img-top" alt="...">
-            </a>
+            {% include 'blog/partials/card_image.html' %}
         </div>
         <div class="col-md-7">
             <div class="card-body">

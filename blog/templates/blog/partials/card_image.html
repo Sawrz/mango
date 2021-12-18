@@ -1,0 +1,10 @@
+{% load static %}
+{% load thumbnail %}
+
+<a href="{% url 'blog:post' slug=p.slug %}">
+    {% if p.featured_image %}
+        <img src="{{ p.featured_image.card.url }}" class="card-img-top">
+    {% else %}
+        <img src="{% static 'images/default_featured_image.jpg' %}" class="card-img-top" alt="No image found!">
+    {% endif %}
+</a>

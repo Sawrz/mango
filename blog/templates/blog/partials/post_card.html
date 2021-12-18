@@ -1,10 +1,9 @@
 {% load markdown_extras %}
 {% load bleach_tags %}
+{% load thumbnail %}
 
 <div class="card h-100">
-    <a href="{% url 'blog:post' slug=p.slug %}">
-        <img src="{{ p.thumbnail.url }}" class="card-img-top" alt="...">
-    </a>
+    {% include 'blog/partials/card_image.html' %}
     <div class="card-body">
         <a href="{% url 'blog:post' slug=p.slug %}">
             <h5 class="card-title">{{ p.title }}</h5>

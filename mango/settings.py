@@ -51,11 +51,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_bleach',
+    'easy_thumbnails',
     'core',
     'contact',
     'blog',
     'portfolio',
-    'django_bleach',
 ]
 
 MIDDLEWARE = [
@@ -203,3 +204,11 @@ BLEACH_STRIP_TAGS = True
 
 # Strip comments, or leave them in.
 BLEACH_STRIP_COMMENTS = False
+
+# Easy Thumbnails
+THUMBNAIL_ALIASES = {
+    'blog': {
+        'banner': {'size': (865, 500), 'crop': 'smart'},
+        'card': {'size': (360, 250), 'crop': 'smart'}
+    }
+}
