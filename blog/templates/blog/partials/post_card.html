@@ -5,9 +5,7 @@
 <div class="card h-100">
     {% include 'blog/partials/card_image.html' %}
     <div class="card-body">
-        <a href="{% url 'blog:post' slug=p.slug %}">
-            <h5 class="card-title">{{ p.title }}</h5>
-        </a>
+        {% include 'blog/partials/card_title.html' %}
         <p class="card-text"><small class="text-muted" style="text-align:left;">{{ p.author }}</small><small
                 class="text-muted" style="float:right;">{{ p.publish_date.date }}</small></p>
         <p class="card-text">{{ p.description|markdown|bleach }}</p>
