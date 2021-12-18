@@ -72,7 +72,6 @@ class Post(models.Model):
     # Presentation & SEO
     description = models.TextField(max_length=250, blank=True, null=True)
     meta_description = models.CharField(max_length=150, blank=True)
-    thumbnail = models.ImageField(blank=True, null=True, upload_to='blog/thumbnails')
 
     # Status & Visibility
     publish_date = models.DateTimeField(blank=True, null=True)

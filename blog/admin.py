@@ -69,7 +69,7 @@ class PostAdmin(admin.ModelAdmin):
         }),
         ('Presentation & SEO', {
             'classes': ('collapse', 'extrapretty',),
-            'fields': ('description', 'meta_description', 'thumbnail',)
+            'fields': ('description', 'meta_description',)
         }),
         ('Content Organization', {
             'classes': ('collapse', 'extrapretty',),
