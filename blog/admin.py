@@ -84,7 +84,7 @@ class PostAdmin(admin.ModelAdmin):
     def get_slug(self, obj):
         url = reverse(f'blog:post_preview', kwargs={'slug': obj.slug})
 
-        return format_html(f'<a href="{url}">{obj.slug}</a>')
+        return format_html(f'<a href="{url}" target="_blank">{obj.slug}</a>')
 
     get_slug.short_description = 'slug'
 
