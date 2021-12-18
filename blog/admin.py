@@ -54,10 +54,8 @@ class PostAdmin(admin.ModelAdmin):
         'publish_date',
     )
     search_fields = (
-        'title',
-        'subtitle',
-        'slug',
-        'body',
+        'title__startswith',
+        'subtitle__startswith',
     )
 
     fieldsets = (
