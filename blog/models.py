@@ -68,8 +68,7 @@ class Post(models.Model):
     body = models.TextField(blank=True, null=True)
 
     # Presentation & SEO
-    max_desc_length = 250
-    description = models.TextField(max_length=max_desc_length, blank=True, null=True)
+    description = models.TextField(max_length=250, blank=True, null=True)
     meta_description = models.CharField(max_length=150, blank=True)
     thumbnail = models.ImageField(blank=True, null=True, upload_to='blog/thumbnails')
 
@@ -113,6 +112,27 @@ class Post(models.Model):
     def check_released(self):
         return self.check_release_date() and self.published
 
+    def __clean_links(self, text):
+        pattern = r'\[(.+?)\]\((.+?)\)'
+
+        return re.sub(pattern, r'\1', text)
+
+    def __truncate_paragraph(self, text):
+        pattern = r'\w+[\.\!\?]+'
+        sent_endings = list(re.finditer(pattern, text))
+
+        if len(sent_endings) > 0:
+            index = sent_endings[-1].span()[-1]
+            text = text[:index]
+
+        return text
+
+    def _create_description(self, max_char_length):
+        text = self.body[:2 * max_char_length]
+        text = self.__clean_links(text)[:max_char_length]
+
+        return self.__truncate_paragraph(text)
+
     def save(self, *args, **kwargs):
         if not self.id:
             self.slug = slugify(f'{self.title} {self.subtitle}')
@@ -123,14 +143,9 @@ class Post(models.Model):
             self.published = False
 
         if not self.description:
-            pattern = r'\w+[\.\!\?]+'
-            sent_endings = list(re.finditer(pattern, self.body[:self.max_desc_length]))
+            self.description = self._create_description(250)
 
-            if len(sent_endings) > 0:
-                index = sent_endings[-1].span()[-1]
-            else:
-                index = self.max_desc_length
-
-            self.description = self.body[:index]
+        if not self.meta_description:
+            self.meta_description = self._create_description(150)
 
         super(Post, self).save(*args, **kwargs)
