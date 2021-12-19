@@ -1,4 +1,4 @@
-{% extends 'main/base.html' %}
+{% extends 'core/base.html' %}
 {% load static %}
 
 <!-- ================================
@@ -53,7 +53,7 @@ Start Content
                 {% endfor %}
             </div>
             {% if paginate_posts %}
-                {% include 'main/partials/pagination.html' %}
+                {% include 'core/partials/pagination.html' %}
             {% endif %}
         </div>
     </section>

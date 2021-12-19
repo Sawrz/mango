@@ -9,11 +9,11 @@ from portfolio.models import Project
 
 # Create your views here.
 class SoonView(generic.TemplateView):
-    template_name = 'main/soon.html'
+    template_name = 'core/soon.html'
 
 
 class MaintenanceView(generic.TemplateView):
-    template_name = 'main/maintenance.html'
+    template_name = 'core/maintenance.html'
 
 
 class ResumeView(generic.TemplateView):
