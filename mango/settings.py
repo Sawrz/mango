@@ -39,7 +39,7 @@ LAUNCHED = env('LAUNCHED')
 TESTING = env('TESTING', default=False)
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = env('SECRET_KEY', default='unsafe-secret-key')
+SECRET_KEY = env('SECRET_KEY')
 ALLOWED_HOSTS = env('ALLOWED_HOSTS')
 
 # Application definition
@@ -167,6 +167,9 @@ else:
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Mango Settings
+SITE_NAME = env('SITE_NAME', default='Mango')
 
 # Site Security
 SESSION_COOKIE_SECURE = env('SESSION_COOKIE_SECURE', default=True)

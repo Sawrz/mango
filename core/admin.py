@@ -6,7 +6,7 @@ from .models import Profile, SocialMediaProfile, Media, Testimonial, Certificate
 
 
 # Set Title
-admin.site.site_header = 'Mango Admin'
+admin.site.site_header = f'{settings.SITE_NAME} Admin'
 
 # Unregister models
 if not settings.MAINTENANCE:
