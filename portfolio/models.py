@@ -36,7 +36,7 @@ class Project(models.Model):
     category = models.CharField(max_length=32, choices=CATEGORY, blank=False, null=False)
 
     MAINTAINER = 'maintainer'
-    CONTRIBUTOR = 'Contributor'
+    CONTRIBUTOR = 'contributor'
     ROLE = [
         (MAINTAINER, 'Maintainer'),
         (CONTRIBUTOR, 'Contributor')
