@@ -4,25 +4,81 @@ from django.core.validators import MinValueValidator, MaxValueValidator
 
 
 # Create your models here.
-class Media(models.Model):
+class Common(models.Model):
     class Meta:
-        verbose_name = 'Media'
-        verbose_name_plural = 'Media Files'
-        ordering = ['name']
+        abstract = True
 
-    image = models.ImageField(blank=True, null=True, upload_to='core/media')
-    url = models.URLField(max_length=255, blank=True, null=True)
-    name = models.CharField(max_length=255, blank=True, null=True)
-    is_image = models.BooleanField(default=True)
+    institution = models.CharField(max_length=255, null=False)
+    title = models.CharField(max_length=63, null=False)
 
-    def save(self, *args, **kwargs):
-        if self.url:
-            self.is_image = False
+    description = models.TextField(max_length=512, blank=True, null=True)
+    is_active = models.BooleanField(default=True)
 
-        super(Media, self).save(*args, **kwargs)
+
+class Education(Common):
+    class Meta:
+        abstract = True
 
     def __str__(self):
-        return self.name
+        return f'{self.title} - {self.institution}'
+
+
+class Degree(Education):
+    class Meta:
+        verbose_name = 'Degree'
+        verbose_name_plural = 'Degrees'
+        ordering = ['-date_finished', 'institution']
+
+    date_started = models.DateField(blank=False, null=False)
+    date_finished = models.DateField(blank=True, null=True)
+
+    major = models.CharField(max_length=63, blank=False, null=False)
+
+
+class Certificate(Education):
+    class Meta:
+        verbose_name = 'Certification'
+        verbose_name_plural = 'Certifications'
+        ordering = ['-date_received', 'institution']
+
+    date_received = models.DateField(blank=False, null=False)
+    valid_until = models.DateField(blank=True, null=True)
+
+    url = models.URLField(max_length=255, blank=True, null=True)
+
+
+class WorkExperience(Common):
+    class Meta:
+        verbose_name = 'Work Experience'
+        verbose_name_plural = 'Work Experiences'
+
+    date_started = models.DateField(blank=False, null=False)
+    date_finished = models.DateField(blank=True, null=True)
+    department = models.CharField(max_length=255, blank=False, null=False)
+
+
+class Language(models.Model):
+    class Meta:
+        verbose_name = 'Language'
+        verbose_name_plural = 'Languages'
+
+    name = models.CharField(max_length=63, null=False, unique=True, blank=False)
+
+    NO = 'no proficiency'
+    ELEMENTARY = 'elementary proficiency'
+    LIMITED_WORKING = 'limited working proficiency'
+    PROFESSIONAL_WORKING = 'professional working proficiency'
+    FULL_PROFESSIONAL = 'full professional working proficiency'
+    NATIVE = 'native proficiency'
+    PROFICIENCY = [
+        (NO, 'No'),
+        (ELEMENTARY, 'Elementary'),
+        (LIMITED_WORKING, 'Limited Working'),
+        (PROFESSIONAL_WORKING, 'Professional Working'),
+        (FULL_PROFESSIONAL, 'Full Professional'),
+        (NATIVE, 'Native'),
+    ]
+    proficiency = models.CharField(max_length=32, choices=PROFICIENCY, blank=False, null=False, default=NO)
 
 
 class TechnicalSkill(models.Model):
@@ -67,6 +123,31 @@ class SoftSkill(models.Model):
     name = models.CharField(max_length=255, null=False, unique=True)
     icon = models.FileField(null=False, upload_to='resume/skills/soft')
     is_active = models.BooleanField(default=True)
+
+    def __str__(self):
+        return self.name
+
+
+class VoluntaryActivity(models.Model):
+    pass
+
+
+class Media(models.Model):
+    class Meta:
+        verbose_name = 'Media'
+        verbose_name_plural = 'Media Files'
+        ordering = ['name']
+
+    image = models.ImageField(blank=True, null=True, upload_to='core/media')
+    url = models.URLField(max_length=255, blank=True, null=True)
+    name = models.CharField(max_length=255, blank=True, null=True)
+    is_image = models.BooleanField(default=True)
+
+    def save(self, *args, **kwargs):
+        if self.url:
+            self.is_image = False
+
+        super(Media, self).save(*args, **kwargs)
 
     def __str__(self):
         return self.name
@@ -121,23 +202,3 @@ class Testimonial(models.Model):
 
     def __str__(self):
         return f'{self.first_name} {self.last_name}'
-
-
-class Certificate(models.Model):
-    class Meta:
-        verbose_name = 'Certificate'
-        verbose_name_plural = 'Certificates'
-
-    title = models.CharField(max_length=255, null=False)
-    institution = models.CharField(max_length=255, null=False)
-
-    date_received = models.DateField(blank=False, null=False)
-    valid_until = models.DateField(blank=True, null=True)
-
-    description = models.TextField(max_length=512, blank=True, null=True)
-    url = models.URLField(max_length=255, blank=True, null=True)
-
-    is_active = models.BooleanField(default=True)
-
-    def __str__(self):
-        return f'{self.title} - {self.institution}'

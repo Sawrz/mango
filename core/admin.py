@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.contrib.auth.models import User, Group
 from django.conf import settings
 from .models import Profile, SocialMediaProfile, Media, Testimonial, Certificate, SoftSkill, TechnicalSkill, \
-    TechnicalSubskill
+    TechnicalSubskill, Degree, WorkExperience
 
 
 # Set Title
@@ -114,3 +114,11 @@ class CertificateAdmin(admin.ModelAdmin):
                      'institution',
                      'is_active',
                      )
+
+@admin.register(Degree)
+class DegreeAdmin(admin.ModelAdmin):
+    pass
+
+@admin.register(WorkExperience)
+class WorkExperienceAdmin(admin.ModelAdmin):
+    pass
