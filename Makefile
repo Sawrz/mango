@@ -15,6 +15,9 @@ define clean_up
 	rm -rf staticfiles
 endef
 
+install-packages: ## installs requirements
+	pip install -r requirements.txt
+
 migrate: ## migrate databases
 	$(call make_migrations)
 
@@ -24,14 +27,12 @@ clean: ## cleans migrations and static files folder
 flush: clean ## removes migrations and static files folders in addition to delete the SQLite DB
 	rm db.sqlite3
 
-simple_update: ## action after updating mango to make sure everything work as expected
-	pip install -r requirements.txt
-	$(call make_migrations)
+update: migrate ## migrate and collect static assets
 	python3 manage.py collectstatic --noinput
 
-update: simple_update ## action after updating mango to make sure everything work as expected if using gunicorn
-	systemctl restart gunicorn.service
+deploy: update ## deploy mango
+	python3 manage.py check --deploy
 
-deploy: simple_update ## install all dependencies of mango
+local-deploy: deploy ## deploy mango and create superuser
 	python3 manage.py createsuperuser
 	python3 manage.py check --deploy
