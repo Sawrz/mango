@@ -19,28 +19,24 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
-env = environ.Env(
-    DEBUG=(bool, False),
-    MAINTENANCE=(bool, True),
-    LAUNCHED=(bool, False),
-    ALLOWED_HOSTS=(list, []),
-    EMAIL_PORT=(int, 587),
-    EMAIL_TLS=(bool, False),
-    EMAIL_SSL=(bool, False)
-)
-environ.Env.read_env()
+env = environ.Env()
+
+READ_ENV_FILE = env.bool("READ_ENV_FILE", default=False)
+
+if READ_ENV_FILE:
+    environ.Env.read_env(BASE_DIR / ".env")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = env('DEBUG')
-MAINTENANCE = env('MAINTENANCE')
-LAUNCHED = env('LAUNCHED')
+DEBUG = env.bool('DEBUG', False)
+MAINTENANCE = env.bool('MAINTENANCE', True)
+LAUNCHED = env.bool('LAUNCHED', True)
 
 # WARNING: Never change this parameter except you know what you're doing: Usage may result in data loss.
-TESTING = env('TESTING', default=False)
+TESTING = env.bool('TESTING', default=False)
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = env('SECRET_KEY')
-ALLOWED_HOSTS = env('ALLOWED_HOSTS')
+SECRET_KEY = env.str('SECRET_KEY', default='unsecure-key')
+ALLOWED_HOSTS = env.list('ALLOWED_HOSTS', default=['localhost', '127.0.0.1', '0.0.0.0'])
 
 # Application definition
 
@@ -106,11 +102,11 @@ else:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql_psycopg2',
-            'NAME': env('DB_NAME'),
-            'USER': env('DB_USER'),
-            'PASSWORD': env('DB_PASSWORD'),
-            'HOST': env('DB_HOST', default='localhost'),
-            'PORT': env('DB_PORT', default=5432)
+            'NAME': env.str('DB_NAME', default='mango'),
+            'USER': env.str('DB_USER', default='mango'),
+            'PASSWORD': env.str('DB_PASSWORD', default='SuperMango'),
+            'HOST': env.str('DB_HOST', default='localhost'),
+            'PORT': env.int('DB_PORT', default=5432)
         }
     }
 
@@ -135,9 +131,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = env.str('LANGUAGE_CODE', default='en-us')
 
-TIME_ZONE = 'Europe/Berlin'
+TIME_ZONE = env.str('TIME_ZONE', default='UTC')
 
 USE_I18N = True
 
@@ -169,21 +165,21 @@ else:
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Mango Settings
-SITE_NAME = env('SITE_NAME', default='Mango')
+SITE_NAME = env.str('SITE_NAME', default='Mango')
 
 # Site Security
-SESSION_COOKIE_SECURE = env('SESSION_COOKIE_SECURE', default=True)
-CSRF_COOKIE_SECURE = env('CSRF_COOKIE_SECURE', default=True)
+SESSION_COOKIE_SECURE = env.str('SESSION_COOKIE_SECURE', default=True)
+CSRF_COOKIE_SECURE = env.str('CSRF_COOKIE_SECURE', default=True)
 
 # Contact
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-DEFAULT_FROM_EMAIL = env('DEFAULT_FROM_EMAIL', default='contact@localhost')
-EMAIL_HOST = env('EMAIL_HOST', default='localhost')
-EMAIL_HOST_USER = env('EMAIL_USER', default='')
-EMAIL_HOST_PASSWORD = env('EMAIL_PASSWORD', default='')
-EMAIL_PORT = env('EMAIL_PORT', default=25)
-EMAIL_USE_TLS = env('EMAIL_TLS', default=False)
-EMAIL_USE_SSL = env('EMAIL_SSL', default=False)
+DEFAULT_FROM_EMAIL = env.str('DEFAULT_FROM_EMAIL', default='contact@localhost')
+EMAIL_HOST = env.str('EMAIL_HOST', default='localhost')
+EMAIL_HOST_USER = env.str('EMAIL_USER', default='')
+EMAIL_HOST_PASSWORD = env.str('EMAIL_PASSWORD', default='')
+EMAIL_PORT = env.int('EMAIL_PORT', default=587)
+EMAIL_USE_TLS = env.str('EMAIL_TLS', default=False)
+EMAIL_USE_SSL = env.str('EMAIL_SSL', default=False)
 
 # Bleach
 # Which HTML tags are allowed

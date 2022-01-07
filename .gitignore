@@ -10,6 +10,6 @@
 /staticfiles/
 /mediafiles/
 /db.sqlite3
-/mango/.env
+/.env
 
 /venv/
