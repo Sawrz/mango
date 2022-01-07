@@ -78,7 +78,7 @@ class Language(models.Model):
         (FULL_PROFESSIONAL, 'Full Professional'),
         (NATIVE, 'Native'),
     ]
-    proficiency = models.CharField(max_length=32, choices=PROFICIENCY, blank=False, null=False, default=NO)
+    proficiency = models.CharField(max_length=63, choices=PROFICIENCY, blank=False, null=False, default=NO)
 
 
 class TechnicalSkill(models.Model):
